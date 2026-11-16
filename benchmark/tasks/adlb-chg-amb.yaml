@@ -1,0 +1,51 @@
+id: adlb-chg-amb
+benchmark_version: '0.1'
+dataset: ADLB
+target_vars:
+- CHG
+keys:
+- USUBJID
+- LBSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: lb_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adlb
+  columns:
+  - USUBJID
+  - LBSEQ
+  - PARAMCD
+  - AVISITN
+  - AVAL
+  - BASE
+  - ONTRTFL
+rows:
+  DTYPE: null
+spec: specs/adlb-chg-amb.md
+output_contract:
+  columns:
+    USUBJID: string
+    LBSEQ: number
+    CHG: number
+  allowed_values: {}
+  nullable:
+  - CHG
+difficulty: medium
+error_categories_expected:
+- missing-value
+- baseline-selection
+- spec-misread
+ambiguous: true
+ambiguity_note: 'It is not stated which records get a change value (post-baseline only, or baseline and
+  earlier visits too) or what a missing AVISITN means. Escalation question: Is CHG derived only for post-baseline
+  records, and what is CHG on baseline, pre-baseline and missing-visit records?'
+split: dev
+provenance: admiral 1.5.0 ADLB template; spec written by Tare
+round: p1a
+readings:
+- id: all-records
+  description: CHG is AVAL - BASE on every record where both exist, baseline included.

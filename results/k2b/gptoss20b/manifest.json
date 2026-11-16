@@ -1,0 +1,34 @@
+{
+  "git_commit": "26b17f84d0e3106246a19a9c779ec734e4b64849",
+  "benchmark_version": "0.1.0",
+  "task_files_sha256": "5c2bd0ffd4074e54a5360b4517aa9775f5f1cbde119f1961591f772afc3ff7dd/44fc52240be2afef64e3991ad197863aa6cc2cf1c73382d984ab7cb28ea7ddac",
+  "prompt_version": "k2-v2",
+  "model": {
+    "provider": "ollama",
+    "model": "gpt-oss:20b",
+    "details": {
+      "parent_model": "dhiltgen/gpt-oss:20b-llamacpp",
+      "format": "gguf",
+      "family": "gpt-oss",
+      "families": [
+        "gpt-oss"
+      ],
+      "parameter_size": "20.9B",
+      "quantization_level": "MXFP4",
+      "runner": "llamacpp"
+    },
+    "digest": "f38aa0c53da5f8c49d08c43a99df24ff53167fe68e24664a7777288e7656fdfe"
+  },
+  "python": "3.12.6",
+  "python_packages": {
+    "pandas": "3.0.6",
+    "pyarrow": "26.0.0",
+    "numpy": "2.5.4",
+    "openai": "3.29.0",
+    "anthropic": "1.13.0",
+    "pyyaml": "6.0.3",
+    "pydantic": "2.14.1"
+  },
+  "sandbox_image": "tare-sandbox:dev",
+  "started": "2026-10-27T00:17:06.284755+00:00"
+}

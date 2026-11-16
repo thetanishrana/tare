@@ -1,0 +1,8 @@
+{
+  "n_samples": 48,
+  "classes": {
+    "correct": 32,
+    "silent_error": 16
+  },
+  "cost_usd_total": 0.0409
+}

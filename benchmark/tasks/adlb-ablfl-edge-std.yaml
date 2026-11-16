@@ -1,0 +1,48 @@
+id: adlb-ablfl-edge-std
+benchmark_version: '0.1'
+dataset: ADLB
+target_vars:
+- ABLFL
+keys:
+- USUBJID
+- LBSEQ
+therapeutic_area: core
+variant: std
+perturbation: edge-exposure
+oracle_id: pert-edge
+inputs:
+- name: lb_upstream
+  source: oracle
+  oracle_id: pert-edge
+  dataset: adlb
+  columns:
+  - USUBJID
+  - LBSEQ
+  - PARAMCD
+  - VISITNUM
+  - ADT
+  - AVAL
+  - TRTSDT
+rows:
+  DTYPE: null
+output_contract:
+  columns:
+    USUBJID: string
+    LBSEQ: number
+    ABLFL: string
+  allowed_values:
+    ABLFL:
+    - Y
+  nullable:
+  - ABLFL
+difficulty: medium
+error_categories_expected:
+- baseline-selection
+- window-boundary
+- ordering-ties
+provenance: admiral 1.5.0 ADLB template; spec written by Tare; inputs perturbed (pert-edge)
+spec: specs/adlb-ablfl-edge-std.md
+ambiguous: false
+ambiguity_note: null
+round: u1
+split: unseen

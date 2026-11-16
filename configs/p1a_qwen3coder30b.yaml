@@ -1,0 +1,24 @@
+# Phase 1 check: the 6 new ambiguous tasks (round p1a) and their 6 clear twins, prompt k2-v2 (ESCALATE option), 3 samples. Local, free.
+name: p1a_qwen3coder30b
+provider: ollama
+model: qwen3-coder:30b
+prompt_version: k2-v2
+language: python
+temperature: 0.2
+max_tokens: 4096
+samples: 3
+max_repairs: 2
+timeout: 120
+tasks:
+- adsl-trtsdt-amb
+- adsl-trtsdt-std
+- adsl-eosstt-amb
+- adsl-eosstt-std
+- adae-astdt-amb
+- adae-astdt-std
+- adae-aoccifl-amb
+- adae-aoccifl-std
+- adlb-chg-amb
+- adlb-chg-std
+- adlb-ontrtfl-amb
+- adlb-ontrtfl-std

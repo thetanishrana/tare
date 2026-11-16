@@ -1,0 +1,53 @@
+id: adlb-ablfl-amb
+benchmark_version: '0.1'
+round: k2b
+dataset: ADLB
+target_vars:
+- ABLFL
+keys:
+- USUBJID
+- LBSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: lb_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adlb
+  columns:
+  - USUBJID
+  - LBSEQ
+  - PARAMCD
+  - VISITNUM
+  - ADT
+  - AVAL
+  - TRTSDT
+rows:
+  DTYPE: null
+spec: specs/adlb-ablfl-amb.md
+output_contract:
+  columns:
+    USUBJID: string
+    LBSEQ: number
+    ABLFL: string
+  allowed_values:
+    ABLFL:
+    - Y
+  nullable:
+  - ABLFL
+difficulty: medium
+error_categories_expected:
+- baseline-selection
+- window-boundary
+- ordering-ties
+ambiguous: true
+ambiguity_note: '''Before the first dose'' does not say whether a result on the first dose day counts,
+  and tie-breaking between results on the same day is not stated. Escalation question: Does a result dated
+  on the first dose day count as before the first dose, and how are several results on the same day ordered?'
+split: dev
+provenance: admiral 1.5.0 ADLB template; spec written by Tare
+readings:
+- id: strict-before
+  description: A result on the first dose day is not before the first dose (ADT < TRTSDT).

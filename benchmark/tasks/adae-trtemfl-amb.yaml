@@ -1,0 +1,50 @@
+id: adae-trtemfl-amb
+benchmark_version: '0.1'
+round: k2b
+dataset: ADAE
+target_vars:
+- TRTEMFL
+keys:
+- USUBJID
+- AESEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: adae_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adae
+  columns:
+  - USUBJID
+  - AESEQ
+  - ASTDT
+  - AENDT
+  - TRTSDT
+  - TRTEDT
+spec: specs/adae-trtemfl-amb.md
+output_contract:
+  columns:
+    USUBJID: string
+    AESEQ: number
+    TRTEMFL: string
+  allowed_values:
+    TRTEMFL:
+    - Y
+  nullable:
+  - TRTEMFL
+difficulty: medium
+error_categories_expected:
+- window-boundary
+- spec-misread
+ambiguous: true
+ambiguity_note: '''After the first dose'' does not say whether an AE on the first dose day counts, and
+  the treatment of a missing last dose date is not stated. Escalation question: Does an AE that starts
+  on the same day as the first dose count as treatment-emergent, and what applies when the last dose date
+  is missing?'
+split: dev
+provenance: admiral 1.5.0 ADAE template; spec written by Tare
+readings:
+- id: strict-after
+  description: An AE on the first dose day is not treatment-emergent (ASTDT > TRTSDT).

@@ -1,0 +1,32 @@
+name: h3_review_off
+mode: pair
+replay_from: results/20261029-134445_h2_pair_assumption_check
+programmer_a:
+  provider: ollama
+  model: qwen3-coder:30b
+  language: python
+programmer_b:
+  provider: ollama
+  model: gpt-oss:20b
+  language: python
+adjudicator:
+  provider: anthropic
+  model: claude-sonnet-5-5
+reviewer: null
+adjudicator_params:
+  max_tokens: 2000
+reviewer_params: {}
+samples: 1
+tasks:
+- adsl-trtsdt-amb
+- adsl-trtsdt-std
+- adsl-eosstt-amb
+- adsl-eosstt-std
+- adae-astdt-amb
+- adae-astdt-std
+- adae-aoccifl-amb
+- adae-aoccifl-std
+- adlb-chg-amb
+- adlb-chg-std
+- adlb-ontrtfl-amb
+- adlb-ontrtfl-std

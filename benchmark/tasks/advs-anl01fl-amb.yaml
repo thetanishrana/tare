@@ -1,0 +1,70 @@
+id: advs-anl01fl-amb
+benchmark_version: '0.1'
+dataset: ADVS
+target_vars:
+- ANL01FL
+keys:
+- USUBJID
+- VSSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: advs_upstream
+  source: oracle
+  oracle_id: std
+  dataset: advs
+  columns:
+  - USUBJID
+  - VSSEQ
+  - PARAMCD
+  - ATPT
+  - AVISIT
+  - AVISITN
+  - ADT
+  - AVAL
+  - ONTRTFL
+rows:
+  DTYPE: null
+  PARAMCD:
+  - SYSBP
+  - DIABP
+  - PULSE
+  - TEMP
+  - WEIGHT
+  - HEIGHT
+output_contract:
+  columns:
+    USUBJID: string
+    VSSEQ: number
+    ANL01FL: string
+  allowed_values:
+    ANL01FL:
+    - Y
+  nullable:
+  - ANL01FL
+difficulty: medium
+error_categories_expected:
+- analysis-flag
+- record-selection
+- spec-misread
+provenance: admiral 1.5.0 ADVS template; spec written by Tare
+spec: specs/advs-anl01fl-amb.md
+ambiguous: true
+ambiguity_note: 'It is not stated whether only on-treatment measurements can be analysis records, whether
+  measurements outside the scheduled visits (no visit number) can be, or whether the time points of a
+  parameter are flagged separately. Escalation question: Must an analysis record be on treatment and belong
+  to a scheduled visit, and is the last record chosen separately for each time point?'
+round: u1
+split: unseen
+readings:
+- id: pooled-timepoints
+  description: One analysis record per subject, parameter and visit across all time points (ATPT ignored);
+    on-treatment scheduled-visit records only.
+- id: no-ontrt-filter
+  description: Every record with a visit number is a candidate, on treatment or not (the baseline visit
+    can be flagged).
+- id: any-visit
+  description: On-treatment records are candidates even without a visit number (grouped as a visit of
+    their own).

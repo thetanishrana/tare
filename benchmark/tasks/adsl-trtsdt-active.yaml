@@ -1,0 +1,36 @@
+id: adsl-trtsdt-active
+benchmark_version: '0.1'
+dataset: ADSL
+target_vars:
+- TRTSDT
+keys:
+- USUBJID
+therapeutic_area: core
+variant: trtsdt-active
+perturbation: none
+oracle_id: var-trtsdt-active
+inputs:
+- name: dm
+  source: sdtm
+  columns: all
+- name: ex
+  source: sdtm
+  columns: all
+spec: specs/adsl-trtsdt-active.md
+output_contract:
+  columns:
+    USUBJID: string
+    TRTSDT: date
+  allowed_values: {}
+  nullable:
+  - TRTSDT
+difficulty: medium
+error_categories_expected:
+- population-flag
+- placebo-zero-dose
+- spec-misread
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADSL template with sponsor variant 'trtsdt-active' (r/variants/variants.R);
+  spec written by Tare

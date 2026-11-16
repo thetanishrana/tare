@@ -1,0 +1,45 @@
+id: adae-aoccifl-aedates-std
+benchmark_version: '0.1'
+dataset: ADAE
+target_vars:
+- AOCCIFL
+keys:
+- USUBJID
+- AESEQ
+therapeutic_area: core
+variant: std
+perturbation: edge-aedates
+oracle_id: pert-aedates
+inputs:
+- name: adae_upstream
+  source: oracle
+  oracle_id: pert-aedates
+  dataset: adae
+  columns:
+  - USUBJID
+  - AESEQ
+  - ASEV
+  - ASTDT
+  - TRTEMFL
+output_contract:
+  columns:
+    USUBJID: string
+    AESEQ: number
+    AOCCIFL: string
+  allowed_values:
+    AOCCIFL:
+    - Y
+  nullable:
+  - AOCCIFL
+difficulty: medium
+error_categories_expected:
+- ordering-ties
+- category-order
+- population-flag
+- spec-misread
+provenance: admiral 1.5.0 ADAE template; spec written by Tare; inputs perturbed (pert-aedates)
+spec: specs/adae-aoccifl-aedates-std.md
+ambiguous: false
+ambiguity_note: null
+round: u1
+split: unseen

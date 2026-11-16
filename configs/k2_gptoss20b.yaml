@@ -1,0 +1,13 @@
+# K2 (local arm, OpenAI family): gpt-oss:20b on the 20 K2 tasks. Free; 3 samples; feeds K3.
+# Reasoning model: max_tokens is larger so reasoning tokens don't crowd out the code block.
+name: k2_gptoss20b
+provider: ollama
+model: gpt-oss:20b
+language: python
+temperature: 0.2
+max_tokens: 8192
+samples: 3
+max_repairs: 2
+timeout: 120
+round: k2a   # the original 20 tasks only; the harder round has its own config (k2b_gptoss20b.yaml)
+tasks: all

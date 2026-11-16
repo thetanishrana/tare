@@ -1,0 +1,13 @@
+# K2 (local arm): does a stronger local coder make silent errors on the 20 K2 tasks? Free; 3 samples.
+# Also feeds K3 (error correlation) as a second model.
+name: k2_qwen3coder30b
+provider: ollama
+model: qwen3-coder:30b
+language: python
+temperature: 0.2
+max_tokens: 4096
+samples: 3
+max_repairs: 2
+timeout: 120
+round: k2a   # original 20 tasks only (the harder round has its own configs)
+tasks: all

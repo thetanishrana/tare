@@ -1,0 +1,55 @@
+id: advs-ablfl-std
+benchmark_version: '0.1'
+round: p1g
+dataset: ADVS
+target_vars:
+- ABLFL
+keys:
+- USUBJID
+- VSSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: advs_upstream
+  source: oracle
+  oracle_id: std
+  dataset: advs
+  columns:
+  - USUBJID
+  - VSSEQ
+  - PARAMCD
+  - ATPT
+  - VISITNUM
+  - ADT
+  - AVAL
+  - TRTSDT
+rows:
+  DTYPE: null
+  PARAMCD:
+  - SYSBP
+  - DIABP
+  - PULSE
+  - TEMP
+  - WEIGHT
+  - HEIGHT
+spec: specs/advs-ablfl-std.md
+output_contract:
+  columns:
+    USUBJID: string
+    VSSEQ: number
+    ABLFL: string
+  allowed_values:
+    ABLFL:
+    - Y
+  nullable:
+  - ABLFL
+difficulty: medium
+error_categories_expected:
+- baseline-selection
+- ordering-ties
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADVS template; spec written by Tare

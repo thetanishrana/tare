@@ -1,0 +1,59 @@
+id: adlb-maxrec-std
+benchmark_version: '0.1'
+round: k2b
+dataset: ADLB
+target_vars:
+- LBSEQ
+- AVAL
+- ADT
+keys:
+- USUBJID
+- PARAMCD
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: lb_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adlb
+  columns:
+  - USUBJID
+  - LBSEQ
+  - PARAMCD
+  - ADT
+  - AVISITN
+  - AVAL
+  - ONTRTFL
+rows:
+  DTYPE: null
+  PARAMCD:
+    not:
+    - BASO
+    - LYMPH
+answer_rows:
+  DTYPE: MAXIMUM
+  PARAMCD:
+    not:
+    - BASO
+    - LYMPH
+spec: specs/adlb-maxrec-std.md
+output_contract:
+  columns:
+    USUBJID: string
+    PARAMCD: string
+    LBSEQ: number
+    AVAL: number
+    ADT: date
+  allowed_values: {}
+  nullable: []
+difficulty: hard
+error_categories_expected:
+- derived-records
+- ordering-ties
+- missing-value
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADLB template; spec written by Tare

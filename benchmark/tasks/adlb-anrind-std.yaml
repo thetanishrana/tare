@@ -1,0 +1,48 @@
+id: adlb-anrind-std
+benchmark_version: '0.1'
+round: p1b
+dataset: ADLB
+target_vars:
+- ANRIND
+keys:
+- USUBJID
+- LBSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: lb_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adlb
+  columns:
+  - USUBJID
+  - LBSEQ
+  - PARAMCD
+  - AVAL
+  - ANRLO
+  - ANRHI
+rows:
+  DTYPE: null
+spec: specs/adlb-anrind-std.md
+output_contract:
+  columns:
+    USUBJID: string
+    LBSEQ: number
+    ANRIND: string
+  allowed_values:
+    ANRIND:
+    - LOW
+    - NORMAL
+    - HIGH
+  nullable:
+  - ANRIND
+difficulty: easy
+error_categories_expected:
+- missing-value
+- window-boundary
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADLB template; spec written by Tare

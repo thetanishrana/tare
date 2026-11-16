@@ -1,0 +1,44 @@
+id: adsl-eosstt-amb
+benchmark_version: '0.1'
+dataset: ADSL
+target_vars:
+- EOSSTT
+keys:
+- USUBJID
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: dm
+  source: sdtm
+  columns: all
+- name: ds
+  source: sdtm
+  columns: all
+spec: specs/adsl-eosstt-amb.md
+output_contract:
+  columns:
+    USUBJID: string
+    EOSSTT: string
+  allowed_values: {}
+  nullable:
+  - EOSSTT
+difficulty: medium
+error_categories_expected:
+- category-order
+- population-flag
+- missing-value
+- spec-misread
+ambiguous: true
+ambiguity_note: 'Screen failures, subjects with no disposition row, and other disposition terms are not
+  covered. Escalation question: What status applies to screen failures (a status, or missing?) and which
+  disposition values count as discontinued?'
+split: dev
+provenance: admiral 1.5.0 ADSL template; spec written by Tare
+round: p1a
+readings:
+- id: screenfail-discontinued
+  description: Screen failures are DISCONTINUED.
+- id: screenfail-ongoing
+  description: Anything not completed or discontinued, including screen failures, is ONGOING.

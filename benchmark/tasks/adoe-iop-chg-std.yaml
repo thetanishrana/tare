@@ -1,0 +1,47 @@
+id: adoe-iop-chg-std
+benchmark_version: '0.1'
+round: ho1
+dataset: ADOE
+target_vars:
+- CHG
+keys:
+- USUBJID
+- OESEQ
+therapeutic_area: ophtha
+variant: std
+perturbation: none
+oracle_id: oph
+inputs:
+- name: oe_upstream
+  source: oracle
+  oracle_id: oph
+  dataset: adoe
+  columns:
+  - USUBJID
+  - OESEQ
+  - PARAMCD
+  - OELAT
+  - VISIT
+  - OETPT
+  - ADT
+  - AVAL
+  - TRTSDT
+spec: specs/adoe-iop-chg-std.md
+output_contract:
+  columns:
+    USUBJID: string
+    OESEQ: number
+    CHG: number
+  allowed_values: {}
+  nullable:
+  - CHG
+difficulty: hard
+error_categories_expected:
+- baseline-selection
+- missing-value
+- join-duplication
+ambiguous: false
+ambiguity_note: null
+split: heldout
+provenance: base admiral functions on pharmaversesdtm ophthalmology data (r/ophtha.R); spec written by
+  Tare

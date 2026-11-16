@@ -1,0 +1,39 @@
+id: adsl-studyeye-std
+benchmark_version: '0.1'
+round: ho1
+dataset: ADSL
+target_vars:
+- STUDYEYE
+keys:
+- USUBJID
+therapeutic_area: ophtha
+variant: std
+perturbation: none
+oracle_id: oph
+inputs:
+- name: dm
+  source: sdtm
+  columns: all
+- name: sc_ophtha
+  source: sdtm
+  columns: all
+spec: specs/adsl-studyeye-std.md
+output_contract:
+  columns:
+    USUBJID: string
+    STUDYEYE: string
+  allowed_values:
+    STUDYEYE:
+    - RIGHT
+    - LEFT
+  nullable:
+  - STUDYEYE
+difficulty: easy
+error_categories_expected:
+- missing-value
+- spec-misread
+ambiguous: false
+ambiguity_note: null
+split: heldout
+provenance: base admiral functions on pharmaversesdtm ophthalmology data (r/ophtha.R); spec written by
+  Tare

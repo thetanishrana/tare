@@ -1,0 +1,57 @@
+id: advs-anl01fl-std
+benchmark_version: '0.1'
+dataset: ADVS
+target_vars:
+- ANL01FL
+keys:
+- USUBJID
+- VSSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: advs_upstream
+  source: oracle
+  oracle_id: std
+  dataset: advs
+  columns:
+  - USUBJID
+  - VSSEQ
+  - PARAMCD
+  - ATPT
+  - AVISIT
+  - AVISITN
+  - ADT
+  - AVAL
+  - ONTRTFL
+rows:
+  DTYPE: null
+  PARAMCD:
+  - SYSBP
+  - DIABP
+  - PULSE
+  - TEMP
+  - WEIGHT
+  - HEIGHT
+output_contract:
+  columns:
+    USUBJID: string
+    VSSEQ: number
+    ANL01FL: string
+  allowed_values:
+    ANL01FL:
+    - Y
+  nullable:
+  - ANL01FL
+difficulty: medium
+error_categories_expected:
+- analysis-flag
+- record-selection
+- spec-misread
+provenance: admiral 1.5.0 ADVS template; spec written by Tare
+spec: specs/advs-anl01fl-std.md
+ambiguous: false
+ambiguity_note: null
+round: u1
+split: unseen

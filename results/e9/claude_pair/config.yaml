@@ -1,0 +1,40 @@
+name: e9_claude_pair
+mode: pair
+programmer_a:
+  provider: anthropic
+  model: claude-haiku-5-5
+  language: python
+programmer_b:
+  provider: anthropic
+  model: claude-sonnet-5-5
+  language: python
+adjudicator:
+  provider: anthropic
+  model: claude-sonnet-5-5
+reviewer:
+  provider: anthropic
+  model: claude-sonnet-5-5
+prompt_version: k2-v4
+max_repairs: 2
+samples: 3
+params:
+  max_tokens: 16000
+adjudicator_params:
+  max_tokens: 2000
+reviewer_params:
+  max_tokens: 2000
+tasks:
+- advs-ontrtfl-amb
+- advs-ontrtfl-std
+- adsl-trtedt-edge-amb
+- adsl-trtedt-edge-std
+- advs-ady-amb
+- advs-ady-std
+- advs-ontrtfl-edge-amb
+- advs-ontrtfl-edge-std
+- advs-ablfl-edge-amb
+- advs-ablfl-edge-std
+- adae-trtemfl-pdates-amb
+- adae-trtemfl-pdates-std
+- adae-astdy-pdates-amb
+- adae-astdy-pdates-std

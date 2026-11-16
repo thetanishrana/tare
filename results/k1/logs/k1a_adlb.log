@@ -1,0 +1,32 @@
+diffdf: template adlb vs pharmaverseadam::adlb
+Differences found between the objects!
+
+Summary of BASE and COMPARE
+  ==================================================================
+    PROPERTY             BASE                       COMP            
+  ------------------------------------------------------------------
+      Name                ref                        new            
+     Class     "tbl_df, tbl, data.frame"  "tbl_df, tbl, data.frame" 
+    Rows(#)              83652                      83652           
+   Columns(#)             115                        115            
+  ------------------------------------------------------------------
+
+
+There are columns in BASE and COMPARE with differing attributes !!
+First 10 of 93 rows are shown in table below
+  =======================================================================
+   VARIABLE  ATTR_NAME              VALUES.BASE              VALUES.COMP 
+  -----------------------------------------------------------------------
+    ABLFL      label          "Baseline Record Flag"            NULL     
+     ADT       label              "Analysis Date"               NULL     
+     ADY       label          "Analysis Relative Day"           NULL     
+    AGEGR1     label           "Pooled Age Group 1"             NULL     
+   ANL01FL     label            "Analysis Flag 01"              NULL     
+    ANRHI      label    "Analysis Normal Range Upper Li..."     NULL     
+    ANRIND     label    "Analysis Reference Range Indic..."     NULL     
+    ANRLO      label    "Analysis Normal Range Lower Li..."     NULL     
+     ASEQ      label        "Analysis Sequence Number"          NULL     
+   ATOXDSCH    label    "Analysis Toxicity Description ..."     NULL     
+  -----------------------------------------------------------------------
+
+

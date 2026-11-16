@@ -1,0 +1,16 @@
+# E9 screening, second set (programmers only, no reviewer): claude-sonnet-5-5 as a single programmer, prompt k2-v4, 1 sample, on the 4 ambiguous u1 tasks added in batch c.
+# Same rule as u1_screen_*: tasks either programmer asks about are dropped. Paid; estimated about $0.07 for both models.
+name: u1b_screen_sonnet
+provider: anthropic
+model: claude-sonnet-5-5
+prompt_version: k2-v4
+language: python
+max_tokens: 16000
+samples: 1
+max_repairs: 2
+timeout: 120
+tasks:
+- advs-ontrtfl-edge-amb
+- advs-ablfl-edge-amb
+- adae-trtemfl-pdates-amb
+- adae-astdy-pdates-amb

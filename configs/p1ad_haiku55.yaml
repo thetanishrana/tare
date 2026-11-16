@@ -1,0 +1,25 @@
+# Frontier run on the 6 p1a pairs (round p1a ambiguous tasks and clear twins) and the first ADVS pair (advs-average), prompt k2-v2, 3 samples. Paid; estimated under $0.5.
+name: p1ad_haiku55
+provider: anthropic
+model: claude-haiku-5-5
+prompt_version: k2-v2
+language: python
+samples: 3
+max_repairs: 2
+timeout: 120
+max_tokens: 16000
+tasks:
+- adsl-trtsdt-amb
+- adsl-trtsdt-std
+- adsl-eosstt-amb
+- adsl-eosstt-std
+- adae-astdt-amb
+- adae-astdt-std
+- adae-aoccifl-amb
+- adae-aoccifl-std
+- adlb-chg-amb
+- adlb-chg-std
+- adlb-ontrtfl-amb
+- adlb-ontrtfl-std
+- advs-average-amb
+- advs-average-std

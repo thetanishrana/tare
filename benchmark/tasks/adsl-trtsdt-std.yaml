@@ -1,0 +1,35 @@
+id: adsl-trtsdt-std
+benchmark_version: '0.1'
+dataset: ADSL
+target_vars:
+- TRTSDT
+keys:
+- USUBJID
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: dm
+  source: sdtm
+  columns: all
+- name: ex
+  source: sdtm
+  columns: all
+spec: specs/adsl-trtsdt-std.md
+output_contract:
+  columns:
+    USUBJID: string
+    TRTSDT: date
+  allowed_values: {}
+  nullable:
+  - TRTSDT
+difficulty: medium
+error_categories_expected:
+- population-flag
+- placebo-zero-dose
+- missing-value
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADSL template; spec written by Tare

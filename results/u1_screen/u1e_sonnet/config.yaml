@@ -1,0 +1,11 @@
+name: u1e_screen_sonnet
+provider: anthropic
+model: claude-sonnet-5-5
+prompt_version: k2-v4
+language: python
+max_tokens: 16000
+samples: 1
+max_repairs: 2
+timeout: 120
+tasks:
+- adlb-ablfl-edge-amb

@@ -1,0 +1,55 @@
+id: advs-ontrtfl-std
+benchmark_version: '0.1'
+dataset: ADVS
+target_vars:
+- ONTRTFL
+keys:
+- USUBJID
+- VSSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: advs_upstream
+  source: oracle
+  oracle_id: std
+  dataset: advs
+  columns:
+  - USUBJID
+  - VSSEQ
+  - PARAMCD
+  - AVISIT
+  - ADT
+  - TRTSDT
+  - TRTEDT
+rows:
+  DTYPE: null
+  PARAMCD:
+  - SYSBP
+  - DIABP
+  - PULSE
+  - TEMP
+  - WEIGHT
+  - HEIGHT
+output_contract:
+  columns:
+    USUBJID: string
+    VSSEQ: number
+    ONTRTFL: string
+  allowed_values:
+    ONTRTFL:
+    - Y
+  nullable:
+  - ONTRTFL
+difficulty: medium
+error_categories_expected:
+- on-treatment-window
+- boundary-day
+- spec-misread
+provenance: admiral 1.5.0 ADVS template; spec written by Tare
+spec: specs/advs-ontrtfl-std.md
+ambiguous: false
+ambiguity_note: null
+round: u1
+split: unseen

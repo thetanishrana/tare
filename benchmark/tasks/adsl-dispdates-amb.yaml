@@ -1,0 +1,54 @@
+id: adsl-dispdates-amb
+benchmark_version: '0.1'
+round: p1h
+dataset: ADSL
+target_vars:
+- RANDDT
+- FRVDT
+- SCRFDT
+- EOSDT
+keys:
+- USUBJID
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: dm
+  source: sdtm
+  columns: all
+- name: ds
+  source: sdtm
+  columns: all
+spec: specs/adsl-dispdates-amb.md
+output_contract:
+  columns:
+    USUBJID: string
+    RANDDT: date
+    FRVDT: date
+    SCRFDT: date
+    EOSDT: date
+  allowed_values: {}
+  nullable:
+  - RANDDT
+  - FRVDT
+  - SCRFDT
+  - EOSDT
+difficulty: medium
+error_categories_expected:
+- missing-value
+- population-flag
+- spec-misread
+ambiguous: true
+ambiguity_note: 'It is not said which record gives the end-of-study date (the disposition event or another
+  end-of-study milestone) or whether a screen failure also has one. Escalation question: Which record
+  gives the end-of-study date, and do screen failures get an end-of-study date or only a screen failure
+  date?'
+split: dev
+provenance: admiral 1.5.0 ADSL template; spec written by Tare
+readings:
+- id: eos-for-screen-failures
+  description: Screen failures also get an end-of-study date (the disposition event date).
+- id: eos-final-lab-visit
+  description: The end-of-study date is the date of the final lab visit record instead of the disposition
+    event.

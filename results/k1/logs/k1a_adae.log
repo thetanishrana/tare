@@ -1,0 +1,93 @@
+diffdf: template adae vs pharmaverseadam::adae
+Differences found between the objects!
+
+Summary of BASE and COMPARE
+  ==================================================================
+    PROPERTY             BASE                       COMP            
+  ------------------------------------------------------------------
+      Name                ref                        new            
+     Class     "tbl_df, tbl, data.frame"  "tbl_df, tbl, data.frame" 
+    Rows(#)              1191                       1191            
+   Columns(#)             107                        107            
+  ------------------------------------------------------------------
+
+
+There are columns in BASE and COMPARE with differing attributes !!
+First 10 of 85 rows are shown in table below
+  =======================================================================
+   VARIABLE  ATTR_NAME              VALUES.BASE              VALUES.COMP 
+  -----------------------------------------------------------------------
+    ADURN      label          "Analysis Duration (N)"           NULL     
+    ADURU      label         "Analysis Duration Units"          NULL     
+    AEACN      label    "Action Taken with Study Treatm..."     NULL     
+   AEBDSYCD    label    "Body System or Organ Class Cod..."     NULL     
+   AEBODSYS    label       "Body System or Organ Class"         NULL     
+   AEDECOD     label         "Dictionary-Derived Term"          NULL     
+    AEDTC      label         "Date/Time of Collection"          NULL     
+   AEENDTC     label     "End Date/Time of Adverse Event"       NULL     
+    AEENDY     label    "Study Day of End of Adverse Ev..."     NULL     
+    AEHLGT     label          "High Level Group Term"           NULL     
+  -----------------------------------------------------------------------
+
+
+Not all Values Compared Equal
+  =============================
+   Variable  No of Differences 
+  -----------------------------
+   LDOSEDTM         299        
+    DOSEON          295        
+    DOSEU           295        
+  -----------------------------
+
+
+First 10 of 299 rows are shown in table below
+  ================================================================================
+   VARIABLE    USUBJID    AESEQ           BASE                    COMPARE         
+  --------------------------------------------------------------------------------
+   LDOSEDTM  01-701-1028    2    2013-08-01 00:00:00 UTC  2013-08-08 00:00:00 UTC 
+   LDOSEDTM  01-701-1034    1    2014-07-15 00:00:00 UTC  2014-08-27 00:00:00 UTC 
+   LDOSEDTM  01-701-1034    2    2014-07-15 00:00:00 UTC  2014-11-02 00:00:00 UTC 
+   LDOSEDTM  01-701-1133    1    2012-11-12 00:00:00 UTC  2012-12-27 00:00:00 UTC 
+   LDOSEDTM  01-701-1133    2    2012-11-12 00:00:00 UTC  2012-12-27 00:00:00 UTC 
+   LDOSEDTM  01-701-1133    3    2012-11-12 00:00:00 UTC  2012-12-27 00:00:00 UTC 
+   LDOSEDTM  01-701-1133    4    2012-11-12 00:00:00 UTC  2012-12-27 00:00:00 UTC 
+   LDOSEDTM  01-701-1146    5    2013-06-03 00:00:00 UTC  2013-06-10 00:00:00 UTC 
+   LDOSEDTM  01-701-1146    6    2013-06-03 00:00:00 UTC  2013-06-10 00:00:00 UTC 
+   LDOSEDTM  01-701-1146    7    2013-06-03 00:00:00 UTC  2013-06-10 00:00:00 UTC 
+  --------------------------------------------------------------------------------
+
+
+First 10 of 295 rows are shown in table below
+  =============================================
+   VARIABLE    USUBJID    AESEQ  BASE  COMPARE 
+  ---------------------------------------------
+    DOSEON   01-701-1028    2     NA     81    
+    DOSEON   01-701-1034    1     NA     81    
+    DOSEON   01-701-1034    2     NA     81    
+    DOSEON   01-701-1133    1     NA     81    
+    DOSEON   01-701-1133    2     NA     81    
+    DOSEON   01-701-1133    3     NA     81    
+    DOSEON   01-701-1133    4     NA     81    
+    DOSEON   01-701-1146    5     NA     81    
+    DOSEON   01-701-1146    6     NA     81    
+    DOSEON   01-701-1146    7     NA     81    
+  ---------------------------------------------
+
+
+First 10 of 295 rows are shown in table below
+  =============================================
+   VARIABLE    USUBJID    AESEQ  BASE  COMPARE 
+  ---------------------------------------------
+    DOSEU    01-701-1028    2    <NA>    mg    
+    DOSEU    01-701-1034    1    <NA>    mg    
+    DOSEU    01-701-1034    2    <NA>    mg    
+    DOSEU    01-701-1133    1    <NA>    mg    
+    DOSEU    01-701-1133    2    <NA>    mg    
+    DOSEU    01-701-1133    3    <NA>    mg    
+    DOSEU    01-701-1133    4    <NA>    mg    
+    DOSEU    01-701-1146    5    <NA>    mg    
+    DOSEU    01-701-1146    6    <NA>    mg    
+    DOSEU    01-701-1146    7    <NA>    mg    
+  ---------------------------------------------
+
+

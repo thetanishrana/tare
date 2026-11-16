@@ -1,0 +1,44 @@
+id: adae-aoccifl-std
+benchmark_version: '0.1'
+round: k2b
+dataset: ADAE
+target_vars:
+- AOCCIFL
+keys:
+- USUBJID
+- AESEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: adae_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adae
+  columns:
+  - USUBJID
+  - AESEQ
+  - ASEV
+  - ASTDT
+  - TRTEMFL
+spec: specs/adae-aoccifl-std.md
+output_contract:
+  columns:
+    USUBJID: string
+    AESEQ: number
+    AOCCIFL: string
+  allowed_values:
+    AOCCIFL:
+    - Y
+  nullable:
+  - AOCCIFL
+difficulty: hard
+error_categories_expected:
+- ordering-ties
+- category-order
+- population-flag
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADAE template; spec written by Tare

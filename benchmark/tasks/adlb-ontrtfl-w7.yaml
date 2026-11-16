@@ -1,0 +1,48 @@
+id: adlb-ontrtfl-w7
+benchmark_version: '0.1'
+round: p1e
+dataset: ADLB
+target_vars:
+- ONTRTFL
+keys:
+- USUBJID
+- LBSEQ
+therapeutic_area: core
+variant: ontrtfl-w7
+perturbation: none
+oracle_id: var-ontrtfl-w7
+inputs:
+- name: lb_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adlb
+  columns:
+  - USUBJID
+  - LBSEQ
+  - PARAMCD
+  - AVISIT
+  - ADT
+  - TRTSDT
+  - TRTEDT
+rows:
+  DTYPE: null
+spec: specs/adlb-ontrtfl-w7.md
+output_contract:
+  columns:
+    USUBJID: string
+    LBSEQ: number
+    ONTRTFL: string
+  allowed_values:
+    ONTRTFL:
+    - Y
+  nullable:
+  - ONTRTFL
+difficulty: hard
+error_categories_expected:
+- window-boundary
+- missing-value
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADLB template with sponsor variant 'ontrtfl-w7' (r/variants/variants.R); spec
+  written by Tare

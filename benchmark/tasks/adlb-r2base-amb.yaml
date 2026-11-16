@@ -1,0 +1,57 @@
+id: adlb-r2base-amb
+benchmark_version: '0.1'
+dataset: ADLB
+target_vars:
+- R2BASE
+keys:
+- USUBJID
+- LBSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: lb_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adlb
+  columns:
+  - USUBJID
+  - LBSEQ
+  - PARAMCD
+  - AVISITN
+  - AVAL
+  - BASE
+rows:
+  DTYPE: null
+output_contract:
+  columns:
+    USUBJID: string
+    LBSEQ: number
+    R2BASE: number
+  allowed_values: {}
+  nullable:
+  - R2BASE
+difficulty: medium
+error_categories_expected:
+- division-by-zero
+- missing-value
+- spec-misread
+provenance: admiral 1.5.0 ADLB template; spec written by Tare
+spec: specs/adlb-r2base-amb.md
+ambiguous: true
+ambiguity_note: 'It is not stated whether the comparison is a plain ratio or a percentage, whether records
+  at or before baseline get a value, or what the ratio is when the baseline is 0 (0 over 0 included).
+  Escalation question: Is R2BASE a plain ratio (1.0 = no change) or a percentage, is it derived for baseline
+  and pre-baseline records, and what is it when BASE is 0?'
+round: u1
+split: unseen
+readings:
+- id: zero-over-zero-is-one
+  description: When AVAL and BASE are both 0 the ratio is 1.0 (no change); a non-zero AVAL over a zero
+    BASE stays missing.
+- id: post-baseline-only
+  description: R2BASE is derived only for post-baseline records (AVISITN above 0); baseline and pre-baseline
+    records get none.
+- id: percent-of-baseline
+  description: The result is expressed as a percentage of baseline (AVAL / BASE * 100).

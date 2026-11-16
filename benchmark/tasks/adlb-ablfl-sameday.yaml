@@ -1,0 +1,53 @@
+id: adlb-ablfl-sameday
+benchmark_version: '0.1'
+round: k2b
+dataset: ADLB
+target_vars:
+- ABLFL
+keys:
+- USUBJID
+- LBSEQ
+therapeutic_area: core
+variant: std
+perturbation: sameday
+oracle_id: pert-sameday-lb
+inputs:
+- name: lb_upstream
+  source: oracle
+  oracle_id: pert-sameday-lb
+  dataset: adlb
+  columns:
+  - USUBJID
+  - LBSEQ
+  - PARAMCD
+  - VISITNUM
+  - ADT
+  - AVAL
+  - TRTSDT
+rows:
+  DTYPE: null
+  PARAMCD:
+    not:
+    - BASO
+    - LYMPH
+spec: specs/adlb-ablfl-sameday.md
+output_contract:
+  columns:
+    USUBJID: string
+    LBSEQ: number
+    ABLFL: string
+  allowed_values:
+    ABLFL:
+    - Y
+  nullable:
+  - ABLFL
+difficulty: hard
+error_categories_expected:
+- baseline-selection
+- ordering-ties
+- window-boundary
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADLB template on SDTM with the 'sameday' perturbation (r/perturb.R); spec written
+  by Tare

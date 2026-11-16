@@ -1,0 +1,54 @@
+id: advs-chg-std
+benchmark_version: '0.1'
+round: p1h
+dataset: ADVS
+target_vars:
+- CHG
+keys:
+- USUBJID
+- VSSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: advs_upstream
+  source: oracle
+  oracle_id: std
+  dataset: advs
+  columns:
+  - USUBJID
+  - VSSEQ
+  - PARAMCD
+  - ATPT
+  - VISITNUM
+  - ADT
+  - AVISITN
+  - AVAL
+  - TRTSDT
+rows:
+  DTYPE: null
+  PARAMCD:
+  - SYSBP
+  - DIABP
+  - PULSE
+  - TEMP
+  - WEIGHT
+  - HEIGHT
+spec: specs/advs-chg-std.md
+output_contract:
+  columns:
+    USUBJID: string
+    VSSEQ: number
+    CHG: number
+  allowed_values: {}
+  nullable:
+  - CHG
+difficulty: hard
+error_categories_expected:
+- baseline-selection
+- missing-value
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADVS template; spec written by Tare

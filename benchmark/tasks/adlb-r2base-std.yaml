@@ -1,0 +1,45 @@
+id: adlb-r2base-std
+benchmark_version: '0.1'
+dataset: ADLB
+target_vars:
+- R2BASE
+keys:
+- USUBJID
+- LBSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: lb_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adlb
+  columns:
+  - USUBJID
+  - LBSEQ
+  - PARAMCD
+  - AVISITN
+  - AVAL
+  - BASE
+rows:
+  DTYPE: null
+output_contract:
+  columns:
+    USUBJID: string
+    LBSEQ: number
+    R2BASE: number
+  allowed_values: {}
+  nullable:
+  - R2BASE
+difficulty: medium
+error_categories_expected:
+- division-by-zero
+- missing-value
+- spec-misread
+provenance: admiral 1.5.0 ADLB template; spec written by Tare
+spec: specs/adlb-r2base-std.md
+ambiguous: false
+ambiguity_note: null
+round: u1
+split: unseen

@@ -1,0 +1,55 @@
+id: adae-aestudyeye-amb
+benchmark_version: '0.1'
+round: ho1
+dataset: ADAE
+target_vars:
+- AESTEFL
+keys:
+- USUBJID
+- AESEQ
+therapeutic_area: ophtha
+variant: std
+perturbation: none
+oracle_id: oph
+inputs:
+- name: ae_upstream
+  source: oracle
+  oracle_id: oph
+  dataset: adae
+  columns:
+  - USUBJID
+  - AESEQ
+  - AELAT
+  - AEDECOD
+  - STUDYEYE
+spec: specs/adae-aestudyeye-amb.md
+output_contract:
+  columns:
+    USUBJID: string
+    AESEQ: number
+    AESTEFL: string
+  allowed_values:
+    AESTEFL:
+    - Y
+    - N
+  nullable:
+  - AESTEFL
+difficulty: easy
+error_categories_expected:
+- missing-value
+- spec-misread
+ambiguous: true
+ambiguity_note: 'It is not said how an event affecting both eyes is treated, or what the flag is for events
+  in the fellow eye and for events that are not eye events. Escalation question: Does an event in both
+  eyes count as a study-eye event, and is the flag N or missing for fellow-eye events and for non-eye
+  events?'
+split: heldout
+provenance: base admiral functions on pharmaversesdtm ophthalmology data (r/ophtha.R); spec written by
+  Tare
+readings:
+- id: both-excluded
+  description: An event in both eyes is not flagged as a study-eye event (N).
+- id: fellow-null
+  description: Fellow-eye events are left missing instead of N.
+- id: noneye-N
+  description: Events that are not eye events get N instead of missing.

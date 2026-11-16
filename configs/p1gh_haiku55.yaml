@@ -1,0 +1,23 @@
+# Spot check of the 11 tasks added in batches p1g and p1h (no model run before): claude-haiku-5-5, single programmer, prompt k2-v2 (optional ESCALATE reply), 1 sample.
+# Purpose: find ill-posed specs and stored readings that models do not land on; not a measurement. Paid; estimated about $0.15 for both models.
+name: p1gh_haiku55
+provider: anthropic
+model: claude-haiku-5-5
+prompt_version: k2-v2
+language: python
+max_tokens: 16000
+samples: 1
+max_repairs: 2
+timeout: 120
+tasks:
+- advs-ablfl-std
+- advs-ablfl-amb
+- adae-aendt-pdates-std
+- adae-aendt-pdates-amb
+- adae-lastdose-amb
+- adsl-dispdates-std
+- adsl-dispdates-amb
+- advs-chg-std
+- advs-chg-amb
+- adlb-shift1-std
+- adlb-shift1-amb

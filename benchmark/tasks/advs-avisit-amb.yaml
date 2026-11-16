@@ -1,0 +1,61 @@
+id: advs-avisit-amb
+benchmark_version: '0.1'
+dataset: ADVS
+target_vars:
+- AVISIT
+keys:
+- USUBJID
+- VSSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: advs_upstream
+  source: oracle
+  oracle_id: std
+  dataset: advs
+  columns:
+  - USUBJID
+  - VSSEQ
+  - PARAMCD
+  - VISIT
+  - VISITNUM
+rows:
+  DTYPE: null
+  PARAMCD:
+  - SYSBP
+  - DIABP
+  - PULSE
+  - TEMP
+  - WEIGHT
+  - HEIGHT
+output_contract:
+  columns:
+    USUBJID: string
+    VSSEQ: number
+    AVISIT: string
+  allowed_values: {}
+  nullable:
+  - AVISIT
+difficulty: medium
+error_categories_expected:
+- visit-mapping
+- missing-value
+- spec-misread
+provenance: admiral 1.5.0 ADVS template; spec written by Tare
+spec: specs/advs-avisit-amb.md
+ambiguous: true
+ambiguity_note: 'It is not stated which collected visits are analysis visits: screening, unscheduled,
+  retrieval and ambulatory ECG visits may or may not count. Escalation question: Which of the collected
+  visits (screening, unscheduled, retrieval, ambulatory ECG placement and removal) are analysis visits
+  and get a name?'
+round: u1
+split: unseen
+readings:
+- id: keep-all-visits
+  description: Every collected visit gets its title-case name, screening, unscheduled, retrieval and ambulatory
+    ECG visits included.
+- id: only-screening-missing
+  description: Only screening visits get no name; unscheduled, retrieval and ambulatory ECG visits are
+    kept in title case.

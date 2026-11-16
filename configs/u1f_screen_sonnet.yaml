@@ -1,0 +1,13 @@
+# E9 screening, sixth set (programmers only, no reviewer): claude-sonnet-5-5 as a single programmer, prompt k2-v4, 1 sample, on adae-lastdose-edge-amb (built on the new oracle pert-edge-adae).
+# Same rule as u1_screen_*. Paid; estimated about $0.05 for both models (the task is hard, so longer code).
+name: u1f_screen_sonnet
+provider: anthropic
+model: claude-sonnet-5-5
+prompt_version: k2-v4
+language: python
+max_tokens: 16000
+samples: 1
+max_repairs: 2
+timeout: 120
+tasks:
+- adae-lastdose-edge-amb

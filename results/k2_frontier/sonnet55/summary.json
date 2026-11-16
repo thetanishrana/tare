@@ -1,0 +1,7 @@
+{
+  "n_samples": 20,
+  "classes": {
+    "correct": 20
+  },
+  "cost_usd_total": 0.2235
+}

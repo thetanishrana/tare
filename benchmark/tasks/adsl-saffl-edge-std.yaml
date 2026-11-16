@@ -1,0 +1,38 @@
+id: adsl-saffl-edge-std
+benchmark_version: '0.1'
+dataset: ADSL
+target_vars:
+- SAFFL
+keys:
+- USUBJID
+therapeutic_area: core
+variant: std
+perturbation: edge-exposure
+oracle_id: pert-edge
+inputs:
+- name: dm
+  source: sdtm
+  columns: all
+- name: ex
+  source: sdtm
+  columns: all
+  oracle_id: pert-edge
+spec: specs/adsl-saffl-edge-std.md
+output_contract:
+  columns:
+    USUBJID: string
+    SAFFL: string
+  allowed_values:
+    SAFFL:
+    - Y
+    - N
+  nullable: []
+difficulty: easy
+error_categories_expected:
+- population-flag
+- placebo-zero-dose
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADSL template; spec written by Tare; inputs perturbed (pert-edge)
+round: p1c

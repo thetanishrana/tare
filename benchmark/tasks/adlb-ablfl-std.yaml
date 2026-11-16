@@ -1,0 +1,47 @@
+id: adlb-ablfl-std
+benchmark_version: '0.1'
+dataset: ADLB
+target_vars:
+- ABLFL
+keys:
+- USUBJID
+- LBSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: lb_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adlb
+  columns:
+  - USUBJID
+  - LBSEQ
+  - PARAMCD
+  - VISITNUM
+  - ADT
+  - AVAL
+  - TRTSDT
+rows:
+  DTYPE: null
+spec: specs/adlb-ablfl-std.md
+output_contract:
+  columns:
+    USUBJID: string
+    LBSEQ: number
+    ABLFL: string
+  allowed_values:
+    ABLFL:
+    - Y
+  nullable:
+  - ABLFL
+difficulty: medium
+error_categories_expected:
+- baseline-selection
+- ordering-ties
+- window-boundary
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADLB template; spec written by Tare

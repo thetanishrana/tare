@@ -1,0 +1,37 @@
+id: adsl-saffl-2rec
+benchmark_version: '0.1'
+dataset: ADSL
+target_vars:
+- SAFFL
+keys:
+- USUBJID
+therapeutic_area: core
+variant: saffl-2rec
+perturbation: none
+oracle_id: var-saffl-2rec
+inputs:
+- name: dm
+  source: sdtm
+  columns: all
+- name: ex
+  source: sdtm
+  columns: all
+spec: specs/adsl-saffl-2rec.md
+output_contract:
+  columns:
+    USUBJID: string
+    SAFFL: string
+  allowed_values:
+    SAFFL:
+    - Y
+    - N
+  nullable: []
+difficulty: medium
+error_categories_expected:
+- population-flag
+- spec-misread
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADSL template with sponsor variant 'saffl-2rec' (r/variants/variants.R); spec
+  written by Tare

@@ -1,0 +1,53 @@
+id: adae-astdy-pdates-amb
+benchmark_version: '0.1'
+dataset: ADAE
+target_vars:
+- ASTDY
+keys:
+- USUBJID
+- AESEQ
+therapeutic_area: core
+variant: std
+perturbation: edge-aedates
+oracle_id: pert-aedates
+inputs:
+- name: adae_upstream
+  source: oracle
+  oracle_id: pert-aedates
+  dataset: adae
+  columns:
+  - USUBJID
+  - AESEQ
+  - ASTDT
+  - ASTDTF
+  - TRTSDT
+output_contract:
+  columns:
+    USUBJID: string
+    AESEQ: number
+    ASTDY: number
+  allowed_values: {}
+  nullable:
+  - ASTDY
+difficulty: medium
+error_categories_expected:
+- date-arithmetic
+- partial-date
+- spec-misread
+provenance: admiral 1.5.0 ADAE template; spec written by Tare; inputs perturbed (pert-aedates)
+spec: specs/adae-astdy-pdates-amb.md
+ambiguous: true
+ambiguity_note: 'It is not stated how days are counted around the first dose day, or whether an event
+  whose start date was filled in from a partial date gets a study day. Escalation question: Is the first
+  dose day day 1 (no day 0), and do events with a filled-in start date get a study day?'
+round: u1
+split: unseen
+readings:
+- id: imputed-missing
+  description: An event whose start date was filled in from a partial date (ASTDTF not missing) gets no
+    study day.
+- id: day-zero
+  description: 'The first dose day is day 0: ASTDY is the plain difference in days, before and after.'
+- id: one-based-everywhere
+  description: One is added to the difference for every event, so the day before the first dose day is
+    day 0.

@@ -1,0 +1,33 @@
+name: h1_local_pair
+mode: pair
+programmer_a:
+  provider: ollama
+  model: qwen3-coder:30b
+  language: python
+programmer_b:
+  provider: ollama
+  model: gpt-oss:20b
+  language: python
+adjudicator:
+  provider: ollama
+  model: gpt-oss:20b
+reviewer: null
+prompt_version: k2-v2
+max_repairs: 2
+samples: 1
+params:
+  max_tokens: 8192
+  temperature: 0.2
+tasks:
+- adsl-trtsdt-amb
+- adsl-trtsdt-std
+- adsl-eosstt-amb
+- adsl-eosstt-std
+- adae-astdt-amb
+- adae-astdt-std
+- adae-aoccifl-amb
+- adae-aoccifl-std
+- adlb-chg-amb
+- adlb-chg-std
+- adlb-ontrtfl-amb
+- adlb-ontrtfl-std

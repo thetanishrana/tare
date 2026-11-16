@@ -1,0 +1,24 @@
+# H5: held-out ophthalmology slice (round ho1), Claude pair, frozen settings from the dev tasks (E8c pre-registration,
+# docs/09_DECISIONS.md 2026-11-04): programmer A Haiku 5.5, B Sonnet 5.5 (Python, prompt k2-v4), adjudicator and reviewer v1
+# Sonnet 5.5, 10 samples per task. Reviewer v2 and reviewer-off variants follow by replay_from on this run's logs.
+# Paid; estimated about $1.5.
+name: h5_heldout_pair
+mode: pair
+programmer_a: {provider: anthropic, model: claude-haiku-5-5, language: python}
+programmer_b: {provider: anthropic, model: claude-sonnet-5-5, language: python}
+adjudicator: {provider: anthropic, model: claude-sonnet-5-5}
+reviewer: {provider: anthropic, model: claude-sonnet-5-5}
+reviewer_version: v1
+prompt_version: k2-v4
+max_repairs: 2
+samples: 10
+params: {max_tokens: 16000}
+adjudicator_params: {max_tokens: 2000}
+reviewer_params: {max_tokens: 2000}
+tasks:
+- adoe-iop-ablfl-amb
+- adoe-iop-ablfl-std
+- adoe-iop-chg-std
+- adae-aestudyeye-amb
+- adae-aestudyeye-std
+- adsl-studyeye-std

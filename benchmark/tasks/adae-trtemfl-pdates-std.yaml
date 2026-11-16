@@ -1,0 +1,46 @@
+id: adae-trtemfl-pdates-std
+benchmark_version: '0.1'
+dataset: ADAE
+target_vars:
+- TRTEMFL
+keys:
+- USUBJID
+- AESEQ
+therapeutic_area: core
+variant: std
+perturbation: edge-aedates
+oracle_id: pert-aedates
+inputs:
+- name: adae_upstream
+  source: oracle
+  oracle_id: pert-aedates
+  dataset: adae
+  columns:
+  - USUBJID
+  - AESEQ
+  - ASTDT
+  - ASTDTF
+  - AENDT
+  - TRTSDT
+  - TRTEDT
+output_contract:
+  columns:
+    USUBJID: string
+    AESEQ: number
+    TRTEMFL: string
+  allowed_values:
+    TRTEMFL:
+    - Y
+  nullable:
+  - TRTEMFL
+difficulty: medium
+error_categories_expected:
+- window-boundary
+- missing-value
+- spec-misread
+provenance: admiral 1.5.0 ADAE template; spec written by Tare; inputs perturbed (pert-aedates)
+spec: specs/adae-trtemfl-pdates-std.md
+ambiguous: false
+ambiguity_note: null
+round: u1
+split: unseen

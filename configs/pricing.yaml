@@ -1,0 +1,18 @@
+# List prices in USD per million tokens, used for API-equivalent cost (tokens x list price).
+# Local (Ollama) models are priced at 0 here; compare them with an explicit "as if" price when reporting.
+# Source: https://platform.claude.com/docs/en/about-claude/pricing and /docs/en/models/overview
+# Checked: 2026-10-18 (VERIFY again before the final frozen runs).
+models:
+  claude-sonnet-5-5:
+    input: 2.00
+    output: 10.00
+    cache_read: 0.10
+    batch_discount: 0.5
+  claude-haiku-5-5:        # prices for prompts up to 100,000 tokens (more above that)
+    input: 0.10
+    output: 0.50
+    cache_read: 0.01
+    batch_discount: 0.5
+  qwen2.5-coder:7b: {input: 0.0, output: 0.0}
+  qwen3-coder:30b: {input: 0.0, output: 0.0}
+  gpt-oss:20b: {input: 0.0, output: 0.0}

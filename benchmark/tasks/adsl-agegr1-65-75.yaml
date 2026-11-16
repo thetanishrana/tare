@@ -1,0 +1,31 @@
+id: adsl-agegr1-65-75
+benchmark_version: '0.1'
+dataset: ADSL
+target_vars:
+- AGEGR1
+keys:
+- USUBJID
+therapeutic_area: core
+variant: agegr1-65-75
+perturbation: none
+oracle_id: var-agegr1-65-75
+inputs:
+- name: dm
+  source: sdtm
+  columns: all
+spec: specs/adsl-agegr1-65-75.md
+output_contract:
+  columns:
+    USUBJID: string
+    AGEGR1: string
+  allowed_values: {}
+  nullable: []
+difficulty: easy
+error_categories_expected:
+- category-order
+- window-boundary
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADSL template with sponsor variant 'agegr1-65-75' (r/variants/variants.R); spec
+  written by Tare

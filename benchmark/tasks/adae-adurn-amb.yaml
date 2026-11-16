@@ -1,0 +1,46 @@
+id: adae-adurn-amb
+benchmark_version: '0.1'
+round: p1b
+dataset: ADAE
+target_vars:
+- ADURN
+keys:
+- USUBJID
+- AESEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: adae_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adae
+  columns:
+  - USUBJID
+  - AESEQ
+  - ASTDT
+  - AENDT
+spec: specs/adae-adurn-amb.md
+output_contract:
+  columns:
+    USUBJID: string
+    AESEQ: number
+    ADURN: number
+  allowed_values: {}
+  nullable:
+  - ADURN
+difficulty: easy
+error_categories_expected:
+- date-arithmetic
+- missing-value
+- spec-misread
+ambiguous: true
+ambiguity_note: 'Inclusive or elapsed counting is not stated, nor what an event with no end date gets.
+  Escalation question: Does a one-day event last 1 day (both days counted) or 0, and is an ongoing event
+  with no end date missing or measured to some cutoff?'
+split: dev
+provenance: admiral 1.5.0 ADAE template; spec written by Tare
+readings:
+- id: elapsed
+  description: Duration is the elapsed days AENDT - ASTDT (no +1).

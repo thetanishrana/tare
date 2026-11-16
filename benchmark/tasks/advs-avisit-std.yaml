@@ -1,0 +1,51 @@
+id: advs-avisit-std
+benchmark_version: '0.1'
+dataset: ADVS
+target_vars:
+- AVISIT
+keys:
+- USUBJID
+- VSSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: advs_upstream
+  source: oracle
+  oracle_id: std
+  dataset: advs
+  columns:
+  - USUBJID
+  - VSSEQ
+  - PARAMCD
+  - VISIT
+  - VISITNUM
+rows:
+  DTYPE: null
+  PARAMCD:
+  - SYSBP
+  - DIABP
+  - PULSE
+  - TEMP
+  - WEIGHT
+  - HEIGHT
+output_contract:
+  columns:
+    USUBJID: string
+    VSSEQ: number
+    AVISIT: string
+  allowed_values: {}
+  nullable:
+  - AVISIT
+difficulty: medium
+error_categories_expected:
+- visit-mapping
+- missing-value
+- spec-misread
+provenance: admiral 1.5.0 ADVS template; spec written by Tare
+spec: specs/advs-avisit-std.md
+ambiguous: false
+ambiguity_note: null
+round: u1
+split: unseen

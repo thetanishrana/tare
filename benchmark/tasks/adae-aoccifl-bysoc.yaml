@@ -1,0 +1,45 @@
+id: adae-aoccifl-bysoc
+benchmark_version: '0.1'
+round: p1e
+dataset: ADAE
+target_vars:
+- AOCCIFL
+keys:
+- USUBJID
+- AESEQ
+therapeutic_area: core
+variant: aoccifl-bysoc
+perturbation: none
+oracle_id: var-aoccifl-bysoc
+inputs:
+- name: adae_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adae
+  columns:
+  - USUBJID
+  - AESEQ
+  - ASEV
+  - ASTDT
+  - TRTEMFL
+  - AEBODSYS
+spec: specs/adae-aoccifl-bysoc.md
+output_contract:
+  columns:
+    USUBJID: string
+    AESEQ: number
+    AOCCIFL: string
+  allowed_values:
+    AOCCIFL:
+    - Y
+  nullable:
+  - AOCCIFL
+difficulty: hard
+error_categories_expected:
+- derived-records
+- ordering-ties
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADAE template with sponsor variant 'aoccifl-bysoc' (r/variants/variants.R);
+  spec written by Tare

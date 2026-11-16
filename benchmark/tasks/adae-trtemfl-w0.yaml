@@ -1,0 +1,44 @@
+id: adae-trtemfl-w0
+benchmark_version: '0.1'
+dataset: ADAE
+target_vars:
+- TRTEMFL
+keys:
+- USUBJID
+- AESEQ
+therapeutic_area: core
+variant: trtemfl-w0
+perturbation: none
+oracle_id: var-trtemfl-w0
+inputs:
+- name: adae_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adae
+  columns:
+  - USUBJID
+  - AESEQ
+  - ASTDT
+  - AENDT
+  - TRTSDT
+  - TRTEDT
+spec: specs/adae-trtemfl-w0.md
+output_contract:
+  columns:
+    USUBJID: string
+    AESEQ: number
+    TRTEMFL: string
+  allowed_values:
+    TRTEMFL:
+    - Y
+  nullable:
+  - TRTEMFL
+difficulty: medium
+error_categories_expected:
+- window-boundary
+- spec-misread
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADAE template with sponsor variant 'trtemfl-w0' (r/variants/variants.R); spec
+  written by Tare

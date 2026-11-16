@@ -1,0 +1,29 @@
+id: adsl-agegr1-std
+benchmark_version: '0.1'
+dataset: ADSL
+target_vars:
+- AGEGR1
+keys:
+- USUBJID
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: dm
+  source: sdtm
+  columns: all
+spec: specs/adsl-agegr1-std.md
+output_contract:
+  columns:
+    USUBJID: string
+    AGEGR1: string
+  allowed_values: {}
+  nullable: []
+difficulty: easy
+error_categories_expected:
+- category-order
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADSL template; spec written by Tare

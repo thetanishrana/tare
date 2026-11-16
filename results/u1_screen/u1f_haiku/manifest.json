@@ -1,0 +1,23 @@
+{
+  "git_commit": "08940a5efd9c094962763d677199c20e063d057a+dirty",
+  "benchmark_version": "0.1.0",
+  "task_files_sha256": "467c04fbce96cae919078d1741e6fb5163b9cad57d1cf76cbe3aaeaa6356e9a0/f8bf84c043f6e34082177b327f8e5050ce3d4e904422ade9ac0efba2bbc0f50d",
+  "prompt_version": "k2-v4",
+  "model": {
+    "provider": "anthropic",
+    "model": "claude-haiku-5-5",
+    "effort": "model default"
+  },
+  "python": "3.12.6",
+  "python_packages": {
+    "pandas": "3.0.6",
+    "pyarrow": "26.0.0",
+    "numpy": "2.5.4",
+    "openai": "3.29.0",
+    "anthropic": "1.13.0",
+    "pyyaml": "6.0.3",
+    "pydantic": "2.14.1"
+  },
+  "sandbox_image": "tare-sandbox:dev",
+  "started": "2026-11-11T20:56:18.549914+00:00"
+}

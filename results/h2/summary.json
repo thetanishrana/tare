@@ -1,0 +1,12 @@
+{
+  "n_samples": 12,
+  "classes": {
+    "escalated": 8,
+    "correct": 3,
+    "silent_error": 1
+  },
+  "decisions": {
+    "escalated": 8,
+    "accepted": 4
+  }
+}

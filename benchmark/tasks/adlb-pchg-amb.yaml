@@ -1,0 +1,50 @@
+id: adlb-pchg-amb
+benchmark_version: '0.1'
+round: p1b
+dataset: ADLB
+target_vars:
+- PCHG
+keys:
+- USUBJID
+- LBSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: lb_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adlb
+  columns:
+  - USUBJID
+  - LBSEQ
+  - PARAMCD
+  - AVISITN
+  - AVAL
+  - BASE
+rows:
+  DTYPE: null
+spec: specs/adlb-pchg-amb.md
+output_contract:
+  columns:
+    USUBJID: string
+    LBSEQ: number
+    PCHG: number
+  allowed_values: {}
+  nullable:
+  - PCHG
+difficulty: medium
+error_categories_expected:
+- baseline-selection
+- missing-value
+- spec-misread
+ambiguous: true
+ambiguity_note: 'Which records get a value and what a zero or missing baseline gives are not stated. Escalation
+  question: Is PCHG derived for post-baseline records only (what is it on baseline and earlier visits?),
+  and what is it when the baseline value is 0?'
+split: dev
+provenance: admiral 1.5.0 ADLB template; spec written by Tare
+readings:
+- id: all-records
+  description: PCHG on every record with a non-zero baseline, baseline and earlier visits included.

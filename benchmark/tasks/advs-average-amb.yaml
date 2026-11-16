@@ -1,0 +1,64 @@
+id: advs-average-amb
+benchmark_version: '0.1'
+round: p1d
+dataset: ADVS
+target_vars:
+- AVAL
+keys:
+- USUBJID
+- PARAMCD
+- ADT
+- AVISIT
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: advs_upstream
+  source: oracle
+  oracle_id: std
+  dataset: advs
+  columns:
+  - USUBJID
+  - PARAMCD
+  - ADT
+  - AVISIT
+  - ATPT
+  - AVAL
+rows:
+  DTYPE: null
+answer_rows:
+  DTYPE: AVERAGE
+fill_missing:
+  AVISIT: (none)
+rowset_is_target: true
+spec: specs/advs-average-amb.md
+output_contract:
+  columns:
+    USUBJID: string
+    PARAMCD: string
+    ADT: date
+    AVISIT: string
+    AVAL: number
+  allowed_values: {}
+  nullable: []
+difficulty: medium
+error_categories_expected:
+- derived-records
+- missing-value
+- spec-misread
+ambiguous: true
+ambiguity_note: 'Which subject-parameter-visit groups get a summary record is not stated: groups with
+  a single reading, groups without an analysis visit, or only complete sets of repeats. Escalation question:
+  Should a summary record be written for every group, including groups with only one reading or with no
+  analysis visit, or only when there are repeated readings?'
+split: dev
+provenance: admiral 1.5.0 ADVS template (derive_summary_records); spec written by Tare
+readings:
+- id: min-two
+  description: Only combinations with at least two non-missing readings get a summary record.
+- id: full-set-only
+  description: A summary record only where the number of readings equals the largest number of readings
+    any visit has for that parameter (a complete set of repeats).
+- id: no-visit-excluded
+  description: Measurements without an analysis visit (AVISIT is '(none)') get no summary record.

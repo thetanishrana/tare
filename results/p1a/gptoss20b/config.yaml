@@ -1,0 +1,23 @@
+name: p1a_gptoss20b
+provider: ollama
+model: gpt-oss:20b
+prompt_version: k2-v2
+language: python
+temperature: 0.2
+max_tokens: 8192
+samples: 3
+max_repairs: 2
+timeout: 120
+tasks:
+- adsl-trtsdt-amb
+- adsl-trtsdt-std
+- adsl-eosstt-amb
+- adsl-eosstt-std
+- adae-astdt-amb
+- adae-astdt-std
+- adae-aoccifl-amb
+- adae-aoccifl-std
+- adlb-chg-amb
+- adlb-chg-std
+- adlb-ontrtfl-amb
+- adlb-ontrtfl-std

@@ -1,0 +1,54 @@
+id: adae-aoccifl-aedates-amb
+benchmark_version: '0.1'
+dataset: ADAE
+target_vars:
+- AOCCIFL
+keys:
+- USUBJID
+- AESEQ
+therapeutic_area: core
+variant: std
+perturbation: edge-aedates
+oracle_id: pert-aedates
+inputs:
+- name: adae_upstream
+  source: oracle
+  oracle_id: pert-aedates
+  dataset: adae
+  columns:
+  - USUBJID
+  - AESEQ
+  - ASEV
+  - ASTDT
+  - TRTEMFL
+output_contract:
+  columns:
+    USUBJID: string
+    AESEQ: number
+    AOCCIFL: string
+  allowed_values:
+    AOCCIFL:
+    - Y
+  nullable:
+  - AOCCIFL
+difficulty: medium
+error_categories_expected:
+- ordering-ties
+- category-order
+- population-flag
+- spec-misread
+provenance: admiral 1.5.0 ADAE template; spec written by Tare; inputs perturbed (pert-aedates)
+spec: specs/adae-aoccifl-aedates-amb.md
+ambiguous: true
+ambiguity_note: 'Tie-breaking among equally severe events is not stated. Escalation question: If a subject
+  has several treatment-emergent events at the highest severity, which one is flagged (earliest start
+  date? lowest sequence number?), and how are start date ties settled?'
+round: u1
+split: unseen
+readings:
+- id: lowest-aeseq
+  description: Ties at the highest severity go to the lowest AESEQ (start date ignored).
+- id: latest-start
+  description: Ties at the highest severity go to the latest start date.
+- id: all-ties-flagged
+  description: Every event at the highest severity is flagged.

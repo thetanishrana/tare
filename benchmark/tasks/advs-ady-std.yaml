@@ -1,0 +1,51 @@
+id: advs-ady-std
+benchmark_version: '0.1'
+dataset: ADVS
+target_vars:
+- ADY
+keys:
+- USUBJID
+- VSSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: advs_upstream
+  source: oracle
+  oracle_id: std
+  dataset: advs
+  columns:
+  - USUBJID
+  - VSSEQ
+  - PARAMCD
+  - ADT
+  - TRTSDT
+rows:
+  DTYPE: null
+  PARAMCD:
+  - SYSBP
+  - DIABP
+  - PULSE
+  - TEMP
+  - WEIGHT
+  - HEIGHT
+output_contract:
+  columns:
+    USUBJID: string
+    VSSEQ: number
+    ADY: number
+  allowed_values: {}
+  nullable:
+  - ADY
+difficulty: medium
+error_categories_expected:
+- study-day
+- off-by-one
+- spec-misread
+provenance: admiral 1.5.0 ADVS template; spec written by Tare
+spec: specs/advs-ady-std.md
+ambiguous: false
+ambiguity_note: null
+round: u1
+split: unseen

@@ -1,0 +1,52 @@
+id: advs-average-std
+benchmark_version: '0.1'
+round: p1d
+dataset: ADVS
+target_vars:
+- AVAL
+keys:
+- USUBJID
+- PARAMCD
+- ADT
+- AVISIT
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: advs_upstream
+  source: oracle
+  oracle_id: std
+  dataset: advs
+  columns:
+  - USUBJID
+  - PARAMCD
+  - ADT
+  - AVISIT
+  - ATPT
+  - AVAL
+rows:
+  DTYPE: null
+answer_rows:
+  DTYPE: AVERAGE
+fill_missing:
+  AVISIT: (none)
+rowset_is_target: true
+spec: specs/advs-average-std.md
+output_contract:
+  columns:
+    USUBJID: string
+    PARAMCD: string
+    ADT: date
+    AVISIT: string
+    AVAL: number
+  allowed_values: {}
+  nullable: []
+difficulty: medium
+error_categories_expected:
+- derived-records
+- missing-value
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADVS template (derive_summary_records); spec written by Tare

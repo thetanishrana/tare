@@ -1,0 +1,44 @@
+id: adlb-chg-std
+benchmark_version: '0.1'
+dataset: ADLB
+target_vars:
+- CHG
+keys:
+- USUBJID
+- LBSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: lb_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adlb
+  columns:
+  - USUBJID
+  - LBSEQ
+  - PARAMCD
+  - AVISITN
+  - AVAL
+  - BASE
+  - ONTRTFL
+rows:
+  DTYPE: null
+spec: specs/adlb-chg-std.md
+output_contract:
+  columns:
+    USUBJID: string
+    LBSEQ: number
+    CHG: number
+  allowed_values: {}
+  nullable:
+  - CHG
+difficulty: easy
+error_categories_expected:
+- missing-value
+- baseline-selection
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADLB template; spec written by Tare

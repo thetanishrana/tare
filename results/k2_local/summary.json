@@ -1,0 +1,8 @@
+{
+  "n_samples": 60,
+  "classes": {
+    "correct": 51,
+    "loud_error": 5,
+    "silent_error": 4
+  }
+}

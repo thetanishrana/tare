@@ -1,0 +1,13 @@
+# K2b (harder round): qwen3-coder:30b on the 11 new tasks (round k2b), prompt k2-v2 with the ESCALATE option, 3 samples.
+name: k2b_qwen3coder30b
+provider: ollama
+model: qwen3-coder:30b
+round: k2b
+prompt_version: k2-v2
+language: python
+temperature: 0.2
+max_tokens: 4096
+samples: 3
+max_repairs: 2
+timeout: 120
+tasks: all

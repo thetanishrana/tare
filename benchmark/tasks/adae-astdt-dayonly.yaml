@@ -1,0 +1,47 @@
+id: adae-astdt-dayonly
+benchmark_version: '0.1'
+dataset: ADAE
+target_vars:
+- ASTDT
+- ASTDTF
+keys:
+- USUBJID
+- AESEQ
+therapeutic_area: core
+variant: astdt-dayonly
+perturbation: none
+oracle_id: var-astdt-dayonly
+inputs:
+- name: ae
+  source: sdtm
+  columns: all
+- name: adsl_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adsl
+  columns:
+  - USUBJID
+  - TRTSDT
+spec: specs/adae-astdt-dayonly.md
+output_contract:
+  columns:
+    USUBJID: string
+    AESEQ: number
+    ASTDT: date
+    ASTDTF: string
+  allowed_values:
+    ASTDTF:
+    - D
+    - M
+  nullable:
+  - ASTDT
+  - ASTDTF
+difficulty: hard
+error_categories_expected:
+- partial-date
+- spec-misread
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADAE template with sponsor variant 'astdt-dayonly' (r/variants/variants.R);
+  spec written by Tare

@@ -1,0 +1,48 @@
+id: adoe-iop-ablfl-std
+benchmark_version: '0.1'
+round: ho1
+dataset: ADOE
+target_vars:
+- ABLFL
+keys:
+- USUBJID
+- OESEQ
+therapeutic_area: ophtha
+variant: std
+perturbation: none
+oracle_id: oph
+inputs:
+- name: oe_upstream
+  source: oracle
+  oracle_id: oph
+  dataset: adoe
+  columns:
+  - USUBJID
+  - OESEQ
+  - PARAMCD
+  - OELAT
+  - VISIT
+  - OETPT
+  - ADT
+  - AVAL
+  - TRTSDT
+spec: specs/adoe-iop-ablfl-std.md
+output_contract:
+  columns:
+    USUBJID: string
+    OESEQ: number
+    ABLFL: string
+  allowed_values:
+    ABLFL:
+    - Y
+  nullable:
+  - ABLFL
+difficulty: medium
+error_categories_expected:
+- baseline-selection
+- ordering-ties
+ambiguous: false
+ambiguity_note: null
+split: heldout
+provenance: base admiral functions on pharmaversesdtm ophthalmology data (r/ophtha.R); spec written by
+  Tare

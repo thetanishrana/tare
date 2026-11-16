@@ -1,0 +1,9 @@
+name: k2_haiku55
+provider: anthropic
+model: claude-haiku-5-5
+language: python
+max_tokens: 16000
+samples: 1
+max_repairs: 2
+timeout: 120
+tasks: all

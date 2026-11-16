@@ -1,0 +1,12 @@
+name: k2b_qwen25coder7b
+provider: ollama
+model: qwen2.5-coder:7b
+round: k2b
+prompt_version: k2-v2
+language: python
+temperature: 0.2
+max_tokens: 4096
+samples: 3
+max_repairs: 2
+timeout: 120
+tasks: all

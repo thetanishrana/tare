@@ -1,0 +1,47 @@
+id: adae-lastdose-std
+benchmark_version: '0.1'
+round: k2b
+dataset: ADAE
+target_vars:
+- LDOSEDTM
+- DOSEON
+keys:
+- USUBJID
+- AESEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: ae_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adae
+  columns:
+  - USUBJID
+  - AESEQ
+  - ASTDT
+- name: ex
+  source: sdtm
+  columns: all
+spec: specs/adae-lastdose-std.md
+output_contract:
+  columns:
+    USUBJID: string
+    AESEQ: number
+    LDOSEDTM: date
+    DOSEON: number
+  allowed_values: {}
+  nullable:
+  - LDOSEDTM
+  - DOSEON
+difficulty: hard
+error_categories_expected:
+- window-boundary
+- join-duplication
+- missing-value
+- date-vs-datetime
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADAE template; spec written by Tare

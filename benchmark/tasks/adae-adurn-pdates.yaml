@@ -1,0 +1,41 @@
+id: adae-adurn-pdates
+benchmark_version: '0.1'
+round: p1f
+dataset: ADAE
+target_vars:
+- ADURN
+keys:
+- USUBJID
+- AESEQ
+therapeutic_area: core
+variant: std
+perturbation: edge-aedates
+oracle_id: pert-aedates
+inputs:
+- name: adae_upstream
+  source: oracle
+  oracle_id: pert-aedates
+  dataset: adae
+  columns:
+  - USUBJID
+  - AESEQ
+  - ASTDT
+  - AENDT
+spec: specs/adae-adurn-pdates.md
+output_contract:
+  columns:
+    USUBJID: string
+    AESEQ: number
+    ADURN: number
+  allowed_values: {}
+  nullable:
+  - ADURN
+difficulty: easy
+error_categories_expected:
+- date-arithmetic
+- missing-value
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADAE template; inputs perturbed (pert-aedates, r/perturb.R); spec written by
+  Tare

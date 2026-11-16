@@ -1,0 +1,45 @@
+id: adlb-chg-ontrt
+benchmark_version: '0.1'
+dataset: ADLB
+target_vars:
+- CHG
+keys:
+- USUBJID
+- LBSEQ
+therapeutic_area: core
+variant: chg-ontrt
+perturbation: none
+oracle_id: var-chg-ontrt
+inputs:
+- name: lb_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adlb
+  columns:
+  - USUBJID
+  - LBSEQ
+  - PARAMCD
+  - AVISITN
+  - AVAL
+  - BASE
+  - ONTRTFL
+rows:
+  DTYPE: null
+spec: specs/adlb-chg-ontrt.md
+output_contract:
+  columns:
+    USUBJID: string
+    LBSEQ: number
+    CHG: number
+  allowed_values: {}
+  nullable:
+  - CHG
+difficulty: medium
+error_categories_expected:
+- missing-value
+- spec-misread
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADLB template with sponsor variant 'chg-ontrt' (r/variants/variants.R); spec
+  written by Tare

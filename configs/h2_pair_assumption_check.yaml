@@ -1,0 +1,29 @@
+# H2: the H1 pair (qwen3-coder:30b and gpt-oss:20b, local) with the assumption check on and Claude Sonnet 5.5 as both the
+# adjudicator and the assumption reviewer. Programmers use prompt k2-v4 (required ASSUMPTIONS list; the reviewer reads both
+# lists when the outputs agree). The same 12 p1a tasks, 1 sample. Programmers are local and free; the Claude calls cost cents.
+# Local server: OLLAMA_HOST=127.0.0.1:11435 scripts/ollama_serve.sh and TARE_OLLAMA_URL=http://localhost:11435.
+name: h2_pair_assumption_check
+mode: pair
+programmer_a: {provider: ollama, model: "qwen3-coder:30b", language: python}
+programmer_b: {provider: ollama, model: "gpt-oss:20b", language: python}
+adjudicator: {provider: anthropic, model: claude-sonnet-5-5}
+reviewer: {provider: anthropic, model: claude-sonnet-5-5}
+prompt_version: k2-v4
+max_repairs: 2
+samples: 1
+params: {max_tokens: 8192, temperature: 0.2}
+adjudicator_params: {max_tokens: 2000}
+reviewer_params: {max_tokens: 2000}
+tasks:
+- adsl-trtsdt-amb
+- adsl-trtsdt-std
+- adsl-eosstt-amb
+- adsl-eosstt-std
+- adae-astdt-amb
+- adae-astdt-std
+- adae-aoccifl-amb
+- adae-aoccifl-std
+- adlb-chg-amb
+- adlb-chg-std
+- adlb-ontrtfl-amb
+- adlb-ontrtfl-std

@@ -1,0 +1,55 @@
+id: advs-chg-edge-std
+benchmark_version: '0.1'
+dataset: ADVS
+target_vars:
+- CHG
+keys:
+- USUBJID
+- VSSEQ
+therapeutic_area: core
+variant: std
+perturbation: edge-exposure
+oracle_id: pert-edge-advs
+inputs:
+- name: advs_upstream
+  source: oracle
+  oracle_id: pert-edge-advs
+  dataset: advs
+  columns:
+  - USUBJID
+  - VSSEQ
+  - PARAMCD
+  - ATPT
+  - VISITNUM
+  - ADT
+  - AVISITN
+  - AVAL
+  - TRTSDT
+rows:
+  DTYPE: null
+  PARAMCD:
+  - SYSBP
+  - DIABP
+  - PULSE
+  - TEMP
+  - WEIGHT
+  - HEIGHT
+output_contract:
+  columns:
+    USUBJID: string
+    VSSEQ: number
+    CHG: number
+  allowed_values: {}
+  nullable:
+  - CHG
+difficulty: medium
+error_categories_expected:
+- baseline-selection
+- missing-value
+- spec-misread
+provenance: admiral 1.5.0 ADVS template; spec written by Tare; inputs perturbed (pert-edge exposure)
+spec: specs/advs-chg-edge-std.md
+ambiguous: false
+ambiguity_note: null
+round: u1
+split: unseen

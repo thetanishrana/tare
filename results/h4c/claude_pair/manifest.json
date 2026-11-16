@@ -1,0 +1,40 @@
+{
+  "git_commit": "eed24c7b715c6a5afff47492535d828beb4ea487+dirty",
+  "benchmark_version": "0.1.0",
+  "task_files_sha256": "257f5155a9d077571a690b5cd1161b9781ee93770ad5e8490bbfe3aa20c272d7/ff38d60aea1eac7193bdf83e64be61b3589d05463196bab75e39459cd5b812bb",
+  "prompt_version": "k2-v4",
+  "python": "3.12.6",
+  "python_packages": {
+    "pandas": "3.0.6",
+    "pyarrow": "26.0.0",
+    "numpy": "2.5.4",
+    "openai": "3.29.0",
+    "anthropic": "1.13.0",
+    "pyyaml": "6.0.3",
+    "pydantic": "2.14.1"
+  },
+  "sandbox_image": "tare-sandbox:dev",
+  "started": "2026-11-07T01:36:03.077189+00:00",
+  "models": {
+    "a": {
+      "provider": "anthropic",
+      "model": "claude-haiku-5-5",
+      "effort": "model default"
+    },
+    "b": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "effort": "model default"
+    },
+    "adjudicator": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "effort": "model default"
+    },
+    "reviewer": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "effort": "model default"
+    }
+  }
+}

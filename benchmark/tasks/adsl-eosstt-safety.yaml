@@ -1,0 +1,35 @@
+id: adsl-eosstt-safety
+benchmark_version: '0.1'
+dataset: ADSL
+target_vars:
+- EOSSTT
+keys:
+- USUBJID
+therapeutic_area: core
+variant: eosstt-safety
+perturbation: none
+oracle_id: var-eosstt-safety
+inputs:
+- name: dm
+  source: sdtm
+  columns: all
+- name: ds
+  source: sdtm
+  columns: all
+spec: specs/adsl-eosstt-safety.md
+output_contract:
+  columns:
+    USUBJID: string
+    EOSSTT: string
+  allowed_values: {}
+  nullable:
+  - EOSSTT
+difficulty: medium
+error_categories_expected:
+- category-order
+- spec-misread
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADSL template with sponsor variant 'eosstt-safety' (r/variants/variants.R);
+  spec written by Tare

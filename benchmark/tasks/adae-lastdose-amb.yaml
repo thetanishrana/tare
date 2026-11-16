@@ -1,0 +1,61 @@
+id: adae-lastdose-amb
+benchmark_version: '0.1'
+round: p1g
+dataset: ADAE
+target_vars:
+- LDOSEDTM
+- DOSEON
+keys:
+- USUBJID
+- AESEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: ae_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adae
+  columns:
+  - USUBJID
+  - AESEQ
+  - ASTDT
+- name: ex
+  source: sdtm
+  columns: all
+spec: specs/adae-lastdose-amb.md
+output_contract:
+  columns:
+    USUBJID: string
+    AESEQ: number
+    LDOSEDTM: date
+    DOSEON: number
+  allowed_values: {}
+  nullable:
+  - LDOSEDTM
+  - DOSEON
+difficulty: hard
+error_categories_expected:
+- window-boundary
+- join-duplication
+- missing-value
+- date-vs-datetime
+- spec-misread
+ambiguous: true
+ambiguity_note: 'It is not said that an exposure record stands for a dose on every day of its period,
+  whether the event day counts, or what to do with records that have no end date. Escalation question:
+  Does an exposure record represent a dose on every day from its start to its end date, may the last dose
+  fall on the event start day, and are records without an end date used?'
+split: dev
+provenance: admiral 1.5.0 ADAE template; spec written by Tare
+readings:
+- id: start-only
+  description: Only the start date of an exposure record counts as a dose day (the period is not expanded).
+- id: strictly-before
+  description: The last dose must be strictly before the event start day.
+- id: open-records-count
+  description: A record with no end date counts as a dose on its start date.
+- id: open-records-single-day
+  description: A record with no end date is a single dose on its start day, for both the last dose and
+    the dose in effect.

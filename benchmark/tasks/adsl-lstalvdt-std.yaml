@@ -1,0 +1,45 @@
+id: adsl-lstalvdt-std
+benchmark_version: '0.1'
+dataset: ADSL
+target_vars:
+- LSTALVDT
+keys:
+- USUBJID
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: dm
+  source: sdtm
+  columns: all
+- name: ae
+  source: sdtm
+  columns: all
+- name: lb
+  source: sdtm
+  columns: all
+- name: adsl_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adsl
+  columns:
+  - USUBJID
+  - TRTEDT
+spec: specs/adsl-lstalvdt-std.md
+output_contract:
+  columns:
+    USUBJID: string
+    LSTALVDT: date
+  allowed_values: {}
+  nullable:
+  - LSTALVDT
+difficulty: hard
+error_categories_expected:
+- partial-date
+- date-vs-datetime
+- missing-value
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADSL template; spec written by Tare

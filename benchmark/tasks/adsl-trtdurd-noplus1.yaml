@@ -1,0 +1,37 @@
+id: adsl-trtdurd-noplus1
+benchmark_version: '0.1'
+dataset: ADSL
+target_vars:
+- TRTDURD
+keys:
+- USUBJID
+therapeutic_area: core
+variant: trtdurd-noplus1
+perturbation: none
+oracle_id: var-trtdurd-noplus1
+inputs:
+- name: adsl_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adsl
+  columns:
+  - USUBJID
+  - TRTSDT
+  - TRTEDT
+spec: specs/adsl-trtdurd-noplus1.md
+output_contract:
+  columns:
+    USUBJID: string
+    TRTDURD: number
+  allowed_values: {}
+  nullable:
+  - TRTDURD
+difficulty: easy
+error_categories_expected:
+- window-boundary
+- spec-misread
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADSL template with sponsor variant 'trtdurd-noplus1' (r/variants/variants.R);
+  spec written by Tare

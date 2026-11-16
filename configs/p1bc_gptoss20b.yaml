@@ -1,0 +1,28 @@
+# Phase 1 check 2: batch p1b (ASTDY, ADURN, PCHG, ANRIND) and batch p1c (edge-exposure twins of SAFFL, TRTSDT, TRTEMFL, ONTRTFL), each ambiguous and clear, prompt k2-v2, 3 samples. Local, free.
+name: p1bc_gptoss20b
+provider: ollama
+model: gpt-oss:20b
+prompt_version: k2-v2
+language: python
+temperature: 0.2
+max_tokens: 8192
+samples: 3
+max_repairs: 2
+timeout: 120
+tasks:
+- adae-astdy-amb
+- adae-astdy-std
+- adae-adurn-amb
+- adae-adurn-std
+- adlb-pchg-amb
+- adlb-pchg-std
+- adlb-anrind-amb
+- adlb-anrind-std
+- adsl-saffl-edge-amb
+- adsl-saffl-edge-std
+- adsl-trtsdt-edge-amb
+- adsl-trtsdt-edge-std
+- adae-trtemfl-edge-amb
+- adae-trtemfl-edge-std
+- adlb-ontrtfl-edge-amb
+- adlb-ontrtfl-edge-std

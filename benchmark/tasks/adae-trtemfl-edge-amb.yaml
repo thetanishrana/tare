@@ -1,0 +1,55 @@
+id: adae-trtemfl-edge-amb
+benchmark_version: '0.1'
+round: p1c
+dataset: ADAE
+target_vars:
+- TRTEMFL
+keys:
+- USUBJID
+- AESEQ
+therapeutic_area: core
+variant: std
+perturbation: edge-exposure
+oracle_id: pert-edge
+inputs:
+- name: adae_upstream
+  source: oracle
+  oracle_id: pert-edge
+  dataset: adae
+  columns:
+  - USUBJID
+  - AESEQ
+  - ASTDT
+  - AENDT
+  - TRTSDT
+  - TRTEDT
+spec: specs/adae-trtemfl-edge-amb.md
+output_contract:
+  columns:
+    USUBJID: string
+    AESEQ: number
+    TRTEMFL: string
+  allowed_values:
+    TRTEMFL:
+    - Y
+  nullable:
+  - TRTEMFL
+difficulty: medium
+error_categories_expected:
+- window-boundary
+- spec-misread
+ambiguous: true
+ambiguity_note: '''After the first dose'' does not say whether an AE on the first dose day counts, and
+  the treatment of a missing last dose date is not stated. Escalation question: Does an AE that starts
+  on the same day as the first dose count as treatment-emergent, and what applies when the last dose date
+  is missing?'
+split: dev
+provenance: admiral 1.5.0 ADAE template; spec written by Tare; inputs perturbed (pert-edge)
+readings:
+- id: missing-end-excluded
+  description: A missing last dose date means the AE cannot be flagged.
+- id: strict-after
+  description: An AE on the first dose day is not treatment-emergent (ASTDT > TRTSDT).
+- id: strict-after-and-missing-end-excluded
+  description: 'Both choices together: an AE on the first dose day is not treatment-emergent and a missing
+    last dose date means it cannot be flagged.'

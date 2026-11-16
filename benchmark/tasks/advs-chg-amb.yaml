@@ -1,0 +1,66 @@
+id: advs-chg-amb
+benchmark_version: '0.1'
+round: p1h
+dataset: ADVS
+target_vars:
+- CHG
+keys:
+- USUBJID
+- VSSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: advs_upstream
+  source: oracle
+  oracle_id: std
+  dataset: advs
+  columns:
+  - USUBJID
+  - VSSEQ
+  - PARAMCD
+  - ATPT
+  - VISITNUM
+  - ADT
+  - AVISITN
+  - AVAL
+  - TRTSDT
+rows:
+  DTYPE: null
+  PARAMCD:
+  - SYSBP
+  - DIABP
+  - PULSE
+  - TEMP
+  - WEIGHT
+  - HEIGHT
+spec: specs/advs-chg-amb.md
+output_contract:
+  columns:
+    USUBJID: string
+    VSSEQ: number
+    CHG: number
+  allowed_values: {}
+  nullable:
+  - CHG
+difficulty: medium
+error_categories_expected:
+- baseline-selection
+- missing-value
+- spec-misread
+ambiguous: true
+ambiguity_note: 'It is not stated whether the baseline is chosen per time point or once per parameter,
+  which records get a change value (post-baseline only?), or what a missing visit number means. Escalation
+  question: Is the baseline chosen separately for each time point of a parameter, and is CHG derived only
+  for post-baseline visits (AVISITN above 0)?'
+split: dev
+provenance: admiral 1.5.0 ADVS template; spec written by Tare
+readings:
+- id: pooled-baseline
+  description: One baseline per subject and parameter across all time points.
+- id: all-records
+  description: CHG on every record that has a baseline, baseline and pre-baseline included.
+- id: pooled-all-records
+  description: One baseline per subject and parameter across time points, and CHG on every record that
+    has a baseline.

@@ -1,0 +1,53 @@
+# H4 replay: logged H4 programmers, Sonnet 5.5 adjudicator, reviewer = qwen (local reviewers need Tare's Ollama on port 11435 via TARE_OLLAMA_URL).
+name: h4_replay_reviewer_qwen
+mode: pair
+replay_from: results/20261029-211243_h4_claude_pair
+programmer_a: {provider: anthropic, model: claude-haiku-5-5, language: python}
+programmer_b: {provider: anthropic, model: claude-sonnet-5-5, language: python}
+adjudicator: {provider: anthropic, model: claude-sonnet-5-5}
+reviewer: {provider: ollama, model: "qwen3-coder:30b"}
+reviewer_params: {max_tokens: 4096, temperature: 0.2}
+adjudicator_params: {max_tokens: 2000}
+samples: 1
+tasks:
+- adae-adurn-amb
+- adae-adurn-std
+- adae-aoccifl-amb
+- adae-aoccifl-std
+- adae-astdt-amb
+- adae-astdt-std
+- adae-astdt-pdates-amb
+- adae-astdy-amb
+- adae-astdy-std
+- adae-trtemfl-amb
+- adae-trtemfl-std
+- adae-trtemfl-edge-amb
+- adae-trtemfl-edge-std
+- adlb-ablfl-amb
+- adlb-ablfl-std
+- adlb-anrind-amb
+- adlb-anrind-std
+- adlb-chg-amb
+- adlb-chg-std
+- adlb-ontrtfl-amb
+- adlb-ontrtfl-std
+- adlb-ontrtfl-edge-amb
+- adlb-ontrtfl-edge-std
+- adlb-pchg-amb
+- adlb-pchg-std
+- adsl-eosstt-amb
+- adsl-eosstt-std
+- adsl-lstalvdt-amb
+- adsl-lstalvdt-std
+- adsl-saffl-amb
+- adsl-saffl-std
+- adsl-saffl-edge-amb
+- adsl-saffl-edge-std
+- adsl-trtdurd-amb
+- adsl-trtdurd-std
+- adsl-trtsdt-amb
+- adsl-trtsdt-std
+- adsl-trtsdt-edge-amb
+- adsl-trtsdt-edge-std
+- advs-average-amb
+- advs-average-std

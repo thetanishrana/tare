@@ -1,0 +1,53 @@
+id: adsl-lstalvdt-amb
+benchmark_version: '0.1'
+round: k2b
+dataset: ADSL
+target_vars:
+- LSTALVDT
+keys:
+- USUBJID
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: dm
+  source: sdtm
+  columns: all
+- name: ae
+  source: sdtm
+  columns: all
+- name: lb
+  source: sdtm
+  columns: all
+- name: vs
+  source: sdtm
+  columns: all
+- name: adsl_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adsl
+  columns:
+  - USUBJID
+  - TRTEDT
+spec: specs/adsl-lstalvdt-amb.md
+output_contract:
+  columns:
+    USUBJID: string
+    LSTALVDT: date
+  allowed_values: {}
+  nullable:
+  - LSTALVDT
+difficulty: hard
+error_categories_expected:
+- partial-date
+- spec-misread
+ambiguous: true
+ambiguity_note: '''Any dated record'' does not say which sources count (vital signs? treatment end date?)
+  or how partial dates are handled. Escalation question: Which datasets and dates count toward the last
+  known alive date (AE, lab, vital signs, treatment end), and how should partial dates be treated?'
+split: dev
+provenance: admiral 1.5.0 ADSL template; spec written by Tare
+readings:
+- id: with-vs
+  description: Vital sign dates (VSDTC) count, as the spec text lists vs.

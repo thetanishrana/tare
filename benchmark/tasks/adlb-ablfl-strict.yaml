@@ -1,0 +1,48 @@
+id: adlb-ablfl-strict
+benchmark_version: '0.1'
+dataset: ADLB
+target_vars:
+- ABLFL
+keys:
+- USUBJID
+- LBSEQ
+therapeutic_area: core
+variant: ablfl-strict
+perturbation: none
+oracle_id: var-ablfl-strict
+inputs:
+- name: lb_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adlb
+  columns:
+  - USUBJID
+  - LBSEQ
+  - PARAMCD
+  - VISITNUM
+  - ADT
+  - AVAL
+  - TRTSDT
+rows:
+  DTYPE: null
+spec: specs/adlb-ablfl-strict.md
+output_contract:
+  columns:
+    USUBJID: string
+    LBSEQ: number
+    ABLFL: string
+  allowed_values:
+    ABLFL:
+    - Y
+  nullable:
+  - ABLFL
+difficulty: medium
+error_categories_expected:
+- baseline-selection
+- window-boundary
+- spec-misread
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADLB template with sponsor variant 'ablfl-strict' (r/variants/variants.R); spec
+  written by Tare

@@ -1,0 +1,64 @@
+id: adae-aendt-pdates-amb
+benchmark_version: '0.1'
+round: p1g
+dataset: ADAE
+target_vars:
+- AENDT
+- AENDTF
+keys:
+- USUBJID
+- AESEQ
+therapeutic_area: core
+variant: std
+perturbation: edge-aedates
+oracle_id: pert-aedates
+inputs:
+- name: ae
+  source: sdtm
+  oracle_id: pert-aedates
+  columns: all
+- name: adsl_upstream
+  source: oracle
+  oracle_id: pert-aedates
+  dataset: adsl
+  columns:
+  - USUBJID
+  - DTHDT
+  - EOSDT
+spec: specs/adae-aendt-pdates-amb.md
+output_contract:
+  columns:
+    USUBJID: string
+    AESEQ: number
+    AENDT: date
+    AENDTF: string
+  allowed_values:
+    AENDTF:
+    - D
+    - M
+  nullable:
+  - AENDT
+  - AENDTF
+difficulty: medium
+error_categories_expected:
+- partial-date
+- derived-records
+- spec-misread
+ambiguous: true
+ambiguity_note: 'It is not said how to fill a missing day (first, middle or last day of the month), or
+  whether an imputed end date may go past the death or study completion date. Escalation question: Is
+  a missing day of an end date set to the first, the middle or the last day of the month, and may the
+  imputed date be later than the subject''s death or study completion date?'
+split: dev
+provenance: admiral 1.5.0 ADAE template; inputs perturbed (pert-aedates, r/perturb.R); spec written by
+  Tare
+readings:
+- id: no-cap
+  description: The last-day imputation is not limited by the death or study completion date.
+- id: first-day
+  description: Missing parts are set to the first day (1st of the month, 1 January).
+- id: mid-day
+  description: A missing day is the 15th of the month and a missing month and day is 30 June.
+- id: cap-anywhere
+  description: An imputed end date is never later than the death or study completion date, even when that
+    date lies before the partial period.

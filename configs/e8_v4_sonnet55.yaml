@@ -1,0 +1,12 @@
+# E8 (escalation elicitation), prompt k2-v4: claude-sonnet-5-5 on the 11 harder-round tasks (5 ambiguous, 6 clear), 3 samples.
+name: e8_v4_sonnet55
+provider: anthropic
+model: claude-sonnet-5-5
+round: k2b
+prompt_version: k2-v4
+language: python
+max_tokens: 16000
+samples: 3
+max_repairs: 2
+timeout: 120
+tasks: all

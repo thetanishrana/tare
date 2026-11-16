@@ -1,0 +1,36 @@
+id: adsl-trtdurd-std
+benchmark_version: '0.1'
+dataset: ADSL
+target_vars:
+- TRTDURD
+keys:
+- USUBJID
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: adsl_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adsl
+  columns:
+  - USUBJID
+  - TRTSDT
+  - TRTEDT
+spec: specs/adsl-trtdurd-std.md
+output_contract:
+  columns:
+    USUBJID: string
+    TRTDURD: number
+  allowed_values: {}
+  nullable:
+  - TRTDURD
+difficulty: easy
+error_categories_expected:
+- window-boundary
+- missing-value
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADSL template; spec written by Tare

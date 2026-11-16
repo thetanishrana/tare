@@ -1,0 +1,23 @@
+{
+  "git_commit": "e66accbf47f296c53520b92d8dbe9f6b46756c9b+dirty",
+  "benchmark_version": "0.1.0",
+  "task_files_sha256": "b45d34381595acd8ec974d2960a27df50d8a494569d68f9a2293eb29ac63c8d1/f86b983012ea93c17f0487a3b93aa9c43361ada0f3fc8f1ef4b8ef5642dd6269",
+  "prompt_version": "k2-v4",
+  "model": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-5-5",
+    "effort": "model default"
+  },
+  "python": "3.12.6",
+  "python_packages": {
+    "pandas": "3.0.6",
+    "pyarrow": "26.0.0",
+    "numpy": "2.5.4",
+    "openai": "3.29.0",
+    "anthropic": "1.13.0",
+    "pyyaml": "6.0.3",
+    "pydantic": "2.14.1"
+  },
+  "sandbox_image": "tare-sandbox:dev",
+  "started": "2026-11-09T00:44:05.902050+00:00"
+}

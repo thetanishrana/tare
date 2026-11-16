@@ -1,0 +1,33 @@
+name: h5_heldout_pair
+mode: pair
+programmer_a:
+  provider: anthropic
+  model: claude-haiku-5-5
+  language: python
+programmer_b:
+  provider: anthropic
+  model: claude-sonnet-5-5
+  language: python
+adjudicator:
+  provider: anthropic
+  model: claude-sonnet-5-5
+reviewer:
+  provider: anthropic
+  model: claude-sonnet-5-5
+reviewer_version: v1
+prompt_version: k2-v4
+max_repairs: 2
+samples: 10
+params:
+  max_tokens: 16000
+adjudicator_params:
+  max_tokens: 2000
+reviewer_params:
+  max_tokens: 2000
+tasks:
+- adoe-iop-ablfl-amb
+- adoe-iop-ablfl-std
+- adoe-iop-chg-std
+- adae-aestudyeye-amb
+- adae-aestudyeye-std
+- adsl-studyeye-std

@@ -1,0 +1,52 @@
+id: adlb-shift1-amb
+benchmark_version: '0.1'
+round: p1h
+dataset: ADLB
+target_vars:
+- SHIFT1
+keys:
+- USUBJID
+- LBSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: lb_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adlb
+  columns:
+  - USUBJID
+  - LBSEQ
+  - PARAMCD
+  - ABLFL
+  - ANRIND
+rows:
+  DTYPE: null
+spec: specs/adlb-shift1-amb.md
+output_contract:
+  columns:
+    USUBJID: string
+    LBSEQ: number
+    SHIFT1: string
+  allowed_values: {}
+  nullable:
+  - SHIFT1
+difficulty: medium
+error_categories_expected:
+- baseline-selection
+- missing-value
+- spec-misread
+ambiguous: true
+ambiguity_note: 'It is not said how a missing baseline or a missing category is written, or whether the
+  shift is shown on the baseline record itself. Escalation question: What is written when the baseline
+  category or the record''s own category is missing (the word NULL, or a missing value), and is a shift
+  shown on baseline and pre-baseline records?'
+split: dev
+provenance: admiral 1.5.0 ADLB template; spec written by Tare
+readings:
+- id: missing-as-null-value
+  description: When either category is missing the shift is missing instead of containing the word NULL.
+- id: baseline-rows-blank
+  description: No shift on the baseline record itself (SHIFT1 missing there).

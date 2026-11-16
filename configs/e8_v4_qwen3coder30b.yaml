@@ -1,0 +1,13 @@
+# E8 (escalation elicitation), prompt k2-v4: qwen3-coder:30b on the 11 harder-round tasks (5 ambiguous, 6 clear), 3 samples.
+name: e8_v4_qwen3coder30b
+provider: ollama
+model: qwen3-coder:30b
+round: k2b
+prompt_version: k2-v4
+language: python
+temperature: 0.2
+max_tokens: 4096
+samples: 3
+max_repairs: 2
+timeout: 120
+tasks: all

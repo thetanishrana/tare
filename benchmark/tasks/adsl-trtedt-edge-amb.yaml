@@ -1,0 +1,49 @@
+id: adsl-trtedt-edge-amb
+benchmark_version: '0.1'
+dataset: ADSL
+target_vars:
+- TRTEDT
+keys:
+- USUBJID
+therapeutic_area: core
+variant: std
+perturbation: edge-exposure
+oracle_id: pert-edge
+inputs:
+- name: dm
+  source: sdtm
+  columns: all
+- name: ex
+  source: sdtm
+  columns: all
+  oracle_id: pert-edge
+output_contract:
+  columns:
+    USUBJID: string
+    TRTEDT: date
+  allowed_values: {}
+  nullable:
+  - TRTEDT
+difficulty: medium
+error_categories_expected:
+- population-flag
+- placebo-zero-dose
+- missing-value
+- spec-misread
+provenance: admiral 1.5.0 ADSL template; spec written by Tare; inputs perturbed (pert-edge)
+spec: specs/adsl-trtedt-edge-amb.md
+ambiguous: true
+ambiguity_note: '''Last exposure record'' does not say whether placebo rows (dose 0) or rows with a missing
+  dose count, nor what to do with a record whose end date is blank. Escalation question: Which exposure
+  records count as treatment (placebo at dose 0? missing dose?), and what is the end date of a record
+  that has none (skip it or use its start date)?'
+round: u1
+split: unseen
+readings:
+- id: active-only
+  description: Placebo rows (dose 0) do not count; only dose above 0 does.
+- id: any-record
+  description: Any exposure record with a complete end date counts, whatever the dose.
+- id: start-fallback
+  description: A qualifying record with a blank end date ends on its start date; the latest end date over
+    all qualifying records is used.

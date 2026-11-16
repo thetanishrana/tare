@@ -1,0 +1,43 @@
+id: adsl-saffl-amb
+benchmark_version: '0.1'
+round: k2b
+dataset: ADSL
+target_vars:
+- SAFFL
+keys:
+- USUBJID
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: dm
+  source: sdtm
+  columns: all
+- name: ex
+  source: sdtm
+  columns: all
+spec: specs/adsl-saffl-amb.md
+output_contract:
+  columns:
+    USUBJID: string
+    SAFFL: string
+  allowed_values:
+    SAFFL:
+    - Y
+    - N
+  nullable: []
+difficulty: medium
+error_categories_expected:
+- population-flag
+- placebo-zero-dose
+- spec-misread
+ambiguous: true
+ambiguity_note: '''Received study treatment'' does not say whether placebo records (dose 0) or records
+  with a missing dose count. Escalation question: Do placebo exposure records with a dose of 0 count as
+  receiving study treatment, and what about records with a missing dose?'
+split: dev
+provenance: admiral 1.5.0 ADSL template; spec written by Tare
+readings:
+- id: placebo-excluded
+  description: Only records with dose above 0 count; placebo at dose 0 does not.

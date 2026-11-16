@@ -1,0 +1,48 @@
+id: adae-astdt-pdates
+benchmark_version: '0.1'
+dataset: ADAE
+target_vars:
+- ASTDT
+- ASTDTF
+keys:
+- USUBJID
+- AESEQ
+therapeutic_area: core
+variant: std
+perturbation: edge-aedates
+oracle_id: pert-aedates
+inputs:
+- name: ae
+  source: sdtm
+  columns: all
+  oracle_id: pert-aedates
+- name: adsl_upstream
+  source: oracle
+  oracle_id: pert-aedates
+  dataset: adsl
+  columns:
+  - USUBJID
+  - TRTSDT
+spec: specs/adae-astdt-pdates.md
+output_contract:
+  columns:
+    USUBJID: string
+    AESEQ: number
+    ASTDT: date
+    ASTDTF: string
+  allowed_values:
+    ASTDTF:
+    - D
+    - M
+  nullable:
+  - ASTDT
+  - ASTDTF
+difficulty: hard
+error_categories_expected:
+- partial-date
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADAE template; inputs perturbed (pert-aedates, r/perturb.R); spec written by
+  Tare
+round: p1f

@@ -1,0 +1,27 @@
+# Phase 1 check 2 (frontier): claude-sonnet-5-5 on batch p1b and the p1c edge twins, same 16 tasks and prompt k2-v2 as the local p1bc runs, 3 samples. Paid; estimated under $1.
+name: p1bc_sonnet55
+provider: anthropic
+model: claude-sonnet-5-5
+prompt_version: k2-v2
+language: python
+samples: 3
+max_repairs: 2
+timeout: 120
+max_tokens: 16000
+tasks:
+- adae-astdy-amb
+- adae-astdy-std
+- adae-adurn-amb
+- adae-adurn-std
+- adlb-pchg-amb
+- adlb-pchg-std
+- adlb-anrind-amb
+- adlb-anrind-std
+- adsl-saffl-edge-amb
+- adsl-saffl-edge-std
+- adsl-trtsdt-edge-amb
+- adsl-trtsdt-edge-std
+- adae-trtemfl-edge-amb
+- adae-trtemfl-edge-std
+- adlb-ontrtfl-edge-amb
+- adlb-ontrtfl-edge-std

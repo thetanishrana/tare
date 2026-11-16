@@ -1,0 +1,57 @@
+id: adae-trtemfl-pdates-amb
+benchmark_version: '0.1'
+dataset: ADAE
+target_vars:
+- TRTEMFL
+keys:
+- USUBJID
+- AESEQ
+therapeutic_area: core
+variant: std
+perturbation: edge-aedates
+oracle_id: pert-aedates
+inputs:
+- name: adae_upstream
+  source: oracle
+  oracle_id: pert-aedates
+  dataset: adae
+  columns:
+  - USUBJID
+  - AESEQ
+  - ASTDT
+  - ASTDTF
+  - AENDT
+  - TRTSDT
+  - TRTEDT
+output_contract:
+  columns:
+    USUBJID: string
+    AESEQ: number
+    TRTEMFL: string
+  allowed_values:
+    TRTEMFL:
+    - Y
+  nullable:
+  - TRTEMFL
+difficulty: medium
+error_categories_expected:
+- window-boundary
+- missing-value
+- spec-misread
+provenance: admiral 1.5.0 ADAE template; spec written by Tare; inputs perturbed (pert-aedates)
+spec: specs/adae-trtemfl-pdates-amb.md
+ambiguous: true
+ambiguity_note: 'It is not said whether an event that starts on the first dose day counts, how events
+  with a filled-in start date are treated, or what to do with an event that has no start date. Escalation
+  question: Does an event starting on the first dose day count, are events with a filled-in start date
+  used as they are, and is an event without a start date treatment-emergent?'
+round: u1
+split: unseen
+readings:
+- id: strictly-after
+  description: An event on the first dose day is not treatment-emergent (ASTDT must be after TRTSDT).
+- id: missing-start-not-flagged
+  description: An event with no start date is never flagged (a flag needs a start date).
+- id: imputed-excluded
+  description: An event whose start date was filled in from a partial date (ASTDTF not missing) is not
+    flagged.

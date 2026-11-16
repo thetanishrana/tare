@@ -1,0 +1,53 @@
+# secrets
+.env
+
+# generated data and run outputs
+data/*
+!data/.gitkeep
+results/*
+!results/.gitkeep
+!results/k1/
+!results/k4/
+!results/k2_local/
+!results/k2_frontier/
+!results/k2b/
+!results/e8/
+!results/p1a/
+!results/p1bc/
+!results/p1ad/
+!results/p1e/
+!results/p1f/
+!results/h1/
+!results/h2/
+!results/h3/
+!results/h4/
+!results/h4b/
+!results/h4c/
+!results/u1_screen/
+!results/e9/
+!results/h5/
+!results/p1gh/
+!results/e8b/
+results/k1/templates/
+results/k1/logs/worker_*
+
+# model files
+*.gguf
+*.safetensors
+models/
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# macOS
+.DS_Store
+
+# Kept local, not in the public repo: working handoff prompt and the blinded-rating keys
+docs/HANDOFF_PROMPT.md
+docs/ratings/rating_key.md
+docs/ratings/rating_key_u1.md
+docs/12_POST_DRAFT.md

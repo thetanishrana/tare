@@ -1,0 +1,14 @@
+# K2 frontier arm: claude-sonnet-5-5 on the 20 K2 tasks, single sample, Python, up to 2 repairs for loud errors.
+# Paid API run: estimate the cost first and confirm before running if it could exceed $2.
+# No temperature is sent (Claude 5.5 models reject non-default sampling); thinking is adaptive and
+# effort uses the model default.
+name: k2_sonnet55
+provider: anthropic
+model: claude-sonnet-5-5
+language: python
+max_tokens: 16000
+samples: 1
+max_repairs: 2
+timeout: 120
+round: k2a   # original 20 tasks only (the harder round has its own configs)
+tasks: all

@@ -1,0 +1,41 @@
+diffdf: template adsl vs pharmaverseadam::adsl
+Differences found between the objects!
+
+Summary of BASE and COMPARE
+  ==================================================================
+    PROPERTY             BASE                       COMP            
+  ------------------------------------------------------------------
+      Name                ref                        new            
+     Class     "tbl_df, tbl, data.frame"  "tbl_df, tbl, data.frame" 
+    Rows(#)               306                        306            
+   Columns(#)             55                         57             
+  ------------------------------------------------------------------
+
+
+There are columns in BASE and COMPARE with differing attributes !!
+First 10 of 30 rows are shown in table below
+  =======================================================================
+   VARIABLE  ATTR_NAME              VALUES.BASE              VALUES.COMP 
+  -----------------------------------------------------------------------
+    AGEGR1     label           "Pooled Age Group 1"             NULL     
+   DTH30FL     label    "Death Within 30 Days of Last T..."     NULL     
+   DTHA30FL    label    "Death After 30 Days from Last ..."     NULL     
+    DTHADY     label          "Relative Day of Death"           NULL     
+   DTHB30FL    label    "Death Within 30 Days of First ..."     NULL     
+   DTHCAUS     label             "Cause of Death"               NULL     
+   DTHCGR1     label         "Cause of Death Reason 1"          NULL     
+    DTHDOM     label    "Domain for Date of Death Colle..."     NULL     
+    DTHDT      label              "Date of Death"               NULL     
+    DTHDTF     label      "Date of Death Imputation Flag"       NULL     
+  -----------------------------------------------------------------------
+
+
+There are columns in COMPARE that are not in BASE !!
+  ==========
+   COLUMNS  
+  ----------
+    ARMNRS  
+   ACTARMUD 
+  ----------
+
+

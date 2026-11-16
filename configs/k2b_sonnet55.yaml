@@ -1,0 +1,12 @@
+# K2b (harder round): claude-sonnet-5-5 on the 11 new tasks (round k2b), prompt k2-v2 with the ESCALATE option, 3 samples.
+name: k2b_sonnet55
+provider: anthropic
+model: claude-sonnet-5-5
+round: k2b
+prompt_version: k2-v2
+language: python
+max_tokens: 16000
+samples: 3
+max_repairs: 2
+timeout: 120
+tasks: all

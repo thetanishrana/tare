@@ -1,0 +1,56 @@
+id: adlb-ablfl-edge-amb
+benchmark_version: '0.1'
+dataset: ADLB
+target_vars:
+- ABLFL
+keys:
+- USUBJID
+- LBSEQ
+therapeutic_area: core
+variant: std
+perturbation: edge-exposure
+oracle_id: pert-edge
+inputs:
+- name: lb_upstream
+  source: oracle
+  oracle_id: pert-edge
+  dataset: adlb
+  columns:
+  - USUBJID
+  - LBSEQ
+  - PARAMCD
+  - VISITNUM
+  - ADT
+  - AVAL
+  - TRTSDT
+rows:
+  DTYPE: null
+output_contract:
+  columns:
+    USUBJID: string
+    LBSEQ: number
+    ABLFL: string
+  allowed_values:
+    ABLFL:
+    - Y
+  nullable:
+  - ABLFL
+difficulty: medium
+error_categories_expected:
+- baseline-selection
+- window-boundary
+- ordering-ties
+provenance: admiral 1.5.0 ADLB template; spec written by Tare; inputs perturbed (pert-edge)
+spec: specs/adlb-ablfl-edge-amb.md
+ambiguous: true
+ambiguity_note: 'It is not stated whether a result on the first dose day counts as before the first dose,
+  or whether ''last'' means the latest date or the latest visit. Escalation question: Does a result on
+  the first dose day count, and is the last result the latest by date or by visit?'
+round: u1
+split: unseen
+readings:
+- id: strict-before
+  description: A result on the first dose day is not before the first dose (ADT before TRTSDT).
+- id: by-visit-number
+  description: The last pre-dose result means the one with the highest visit number (VISITNUM), whatever
+    its date.

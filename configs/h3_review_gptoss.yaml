@@ -1,0 +1,26 @@
+# H3 (assumption check in isolation): replay the H2 programmers (logged in results/20261029-134445_h2_pair_assumption_check, prompt k2-v4) and rerun only the
+# decision stage. Adjudicator fixed to Claude Sonnet 5.5; the reviewer varies: off, qwen3-coder:30b, gpt-oss:20b, Haiku 5.5
+# (the Sonnet reviewer is the H2 run itself). Local reviewers need Tare's Ollama on 11435 (TARE_OLLAMA_URL).
+name: h3_review_gptoss
+mode: pair
+replay_from: results/20261029-134445_h2_pair_assumption_check
+programmer_a: {provider: ollama, model: "qwen3-coder:30b", language: python}
+programmer_b: {provider: ollama, model: "gpt-oss:20b", language: python}
+adjudicator: {provider: anthropic, model: claude-sonnet-5-5}
+reviewer: {provider: ollama, model: "gpt-oss:20b"}
+adjudicator_params: {max_tokens: 2000}
+reviewer_params: {max_tokens: 4096, temperature: 0.2}
+samples: 1
+tasks:
+- adsl-trtsdt-amb
+- adsl-trtsdt-std
+- adsl-eosstt-amb
+- adsl-eosstt-std
+- adae-astdt-amb
+- adae-astdt-std
+- adae-aoccifl-amb
+- adae-aoccifl-std
+- adlb-chg-amb
+- adlb-chg-std
+- adlb-ontrtfl-amb
+- adlb-ontrtfl-std

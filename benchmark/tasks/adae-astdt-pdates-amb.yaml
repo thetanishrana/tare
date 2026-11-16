@@ -1,0 +1,57 @@
+id: adae-astdt-pdates-amb
+benchmark_version: '0.1'
+dataset: ADAE
+target_vars:
+- ASTDT
+- ASTDTF
+keys:
+- USUBJID
+- AESEQ
+therapeutic_area: core
+variant: std
+perturbation: edge-aedates
+oracle_id: pert-aedates
+inputs:
+- name: ae
+  source: sdtm
+  columns: all
+  oracle_id: pert-aedates
+- name: adsl_upstream
+  source: oracle
+  oracle_id: pert-aedates
+  dataset: adsl
+  columns:
+  - USUBJID
+  - TRTSDT
+spec: specs/adae-astdt-pdates-amb.md
+output_contract:
+  columns:
+    USUBJID: string
+    AESEQ: number
+    ASTDT: date
+    ASTDTF: string
+  allowed_values:
+    ASTDTF:
+    - D
+    - M
+  nullable:
+  - ASTDT
+  - ASTDTF
+difficulty: medium
+error_categories_expected:
+- partial-date
+- spec-misread
+ambiguous: true
+ambiguity_note: '''Could have started on or after'' the first dose is not defined precisely: which partial
+  dates are adjusted, and whether the flag changes. Escalation question: When is an imputed date moved
+  to the first dose date (only if the first dose falls inside the partial period?), and does ASTDTF still
+  show the original imputation?'
+split: dev
+provenance: admiral 1.5.0 ADAE template; inputs perturbed (pert-aedates, r/perturb.R); spec written by
+  Tare
+round: p1f
+readings:
+- id: adjust-any-earlier
+  description: Any imputed date before the first dose is moved to it, wherever the first dose falls.
+- id: no-adjustment
+  description: Imputed dates are never moved to the first dose date.

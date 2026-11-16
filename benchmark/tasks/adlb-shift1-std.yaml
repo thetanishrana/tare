@@ -1,0 +1,42 @@
+id: adlb-shift1-std
+benchmark_version: '0.1'
+round: p1h
+dataset: ADLB
+target_vars:
+- SHIFT1
+keys:
+- USUBJID
+- LBSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: lb_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adlb
+  columns:
+  - USUBJID
+  - LBSEQ
+  - PARAMCD
+  - ABLFL
+  - ANRIND
+rows:
+  DTYPE: null
+spec: specs/adlb-shift1-std.md
+output_contract:
+  columns:
+    USUBJID: string
+    LBSEQ: number
+    SHIFT1: string
+  allowed_values: {}
+  nullable: []
+difficulty: medium
+error_categories_expected:
+- baseline-selection
+- missing-value
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADLB template; spec written by Tare

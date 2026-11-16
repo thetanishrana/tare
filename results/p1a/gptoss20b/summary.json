@@ -1,0 +1,10 @@
+{
+  "n_samples": 36,
+  "classes": {
+    "silent_error": 13,
+    "loud_error": 1,
+    "correct": 21,
+    "escalated": 1
+  },
+  "cost_usd_total": 0.0
+}

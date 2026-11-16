@@ -1,0 +1,59 @@
+id: adlb-ontrtfl-edge-amb
+benchmark_version: '0.1'
+round: p1c
+dataset: ADLB
+target_vars:
+- ONTRTFL
+keys:
+- USUBJID
+- LBSEQ
+therapeutic_area: core
+variant: std
+perturbation: edge-exposure
+oracle_id: pert-edge
+inputs:
+- name: lb_upstream
+  source: oracle
+  oracle_id: pert-edge
+  dataset: adlb
+  columns:
+  - USUBJID
+  - LBSEQ
+  - PARAMCD
+  - AVISIT
+  - ADT
+  - TRTSDT
+  - TRTEDT
+rows:
+  DTYPE: null
+spec: specs/adlb-ontrtfl-edge-amb.md
+output_contract:
+  columns:
+    USUBJID: string
+    LBSEQ: number
+    ONTRTFL: string
+  allowed_values:
+    ONTRTFL:
+    - Y
+  nullable:
+  - ONTRTFL
+difficulty: medium
+error_categories_expected:
+- window-boundary
+- baseline-selection
+- missing-value
+- spec-misread
+ambiguous: true
+ambiguity_note: '''Between'' first and last dose does not settle the end points, a missing last dose date,
+  or a baseline-visit result taken on the first dose day. Escalation question: Are the first and last
+  dose days included, what applies when TRTEDT is missing, and does a Baseline-visit result on the first
+  dose day count as on treatment?'
+split: dev
+provenance: admiral 1.5.0 ADLB template; spec written by Tare; inputs perturbed (pert-edge)
+readings:
+- id: baseline-day-counts
+  description: A Baseline-visit result on the first dose day is on treatment.
+- id: dose-days-excluded
+  description: The first and last dose days themselves are excluded (strictly between).
+- id: missing-end-excluded
+  description: A missing last dose date means no record is on treatment.

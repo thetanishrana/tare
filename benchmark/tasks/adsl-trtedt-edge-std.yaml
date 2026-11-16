@@ -1,0 +1,38 @@
+id: adsl-trtedt-edge-std
+benchmark_version: '0.1'
+dataset: ADSL
+target_vars:
+- TRTEDT
+keys:
+- USUBJID
+therapeutic_area: core
+variant: std
+perturbation: edge-exposure
+oracle_id: pert-edge
+inputs:
+- name: dm
+  source: sdtm
+  columns: all
+- name: ex
+  source: sdtm
+  columns: all
+  oracle_id: pert-edge
+output_contract:
+  columns:
+    USUBJID: string
+    TRTEDT: date
+  allowed_values: {}
+  nullable:
+  - TRTEDT
+difficulty: medium
+error_categories_expected:
+- population-flag
+- placebo-zero-dose
+- missing-value
+- spec-misread
+provenance: admiral 1.5.0 ADSL template; spec written by Tare; inputs perturbed (pert-edge)
+spec: specs/adsl-trtedt-edge-std.md
+ambiguous: false
+ambiguity_note: null
+round: u1
+split: unseen

@@ -1,0 +1,49 @@
+id: adsl-lstalvdt-addvs
+benchmark_version: '0.1'
+dataset: ADSL
+target_vars:
+- LSTALVDT
+keys:
+- USUBJID
+therapeutic_area: core
+variant: lstalvdt-addvs
+perturbation: none
+oracle_id: var-lstalvdt-addvs
+inputs:
+- name: dm
+  source: sdtm
+  columns: all
+- name: ae
+  source: sdtm
+  columns: all
+- name: lb
+  source: sdtm
+  columns: all
+- name: vs
+  source: sdtm
+  columns: all
+- name: adsl_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adsl
+  columns:
+  - USUBJID
+  - TRTEDT
+spec: specs/adsl-lstalvdt-addvs.md
+output_contract:
+  columns:
+    USUBJID: string
+    LSTALVDT: date
+  allowed_values: {}
+  nullable:
+  - LSTALVDT
+difficulty: hard
+error_categories_expected:
+- partial-date
+- date-vs-datetime
+- spec-misread
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADSL template with sponsor variant 'lstalvdt-addvs' (r/variants/variants.R);
+  spec written by Tare

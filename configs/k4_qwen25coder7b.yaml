@@ -1,0 +1,12 @@
+# K4: does a small local model have any signal? Same 20 K2 tasks, 3 samples each, Python.
+name: k4_qwen25coder7b
+provider: ollama
+model: qwen2.5-coder:7b
+language: python
+temperature: 0.2
+max_tokens: 4096
+samples: 3
+max_repairs: 2
+timeout: 120
+round: k2a   # original 20 tasks only (the harder round has its own configs)
+tasks: all

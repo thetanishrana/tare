@@ -1,0 +1,66 @@
+id: advs-ablfl-edge-amb
+benchmark_version: '0.1'
+dataset: ADVS
+target_vars:
+- ABLFL
+keys:
+- USUBJID
+- VSSEQ
+therapeutic_area: core
+variant: std
+perturbation: edge-exposure
+oracle_id: pert-edge-advs
+inputs:
+- name: advs_upstream
+  source: oracle
+  oracle_id: pert-edge-advs
+  dataset: advs
+  columns:
+  - USUBJID
+  - VSSEQ
+  - PARAMCD
+  - ATPT
+  - VISITNUM
+  - ADT
+  - AVAL
+  - TRTSDT
+rows:
+  DTYPE: null
+  PARAMCD:
+  - SYSBP
+  - DIABP
+  - PULSE
+  - TEMP
+  - WEIGHT
+  - HEIGHT
+output_contract:
+  columns:
+    USUBJID: string
+    VSSEQ: number
+    ABLFL: string
+  allowed_values:
+    ABLFL:
+    - Y
+  nullable:
+  - ABLFL
+difficulty: medium
+error_categories_expected:
+- baseline-selection
+- spec-misread
+provenance: admiral 1.5.0 ADVS template; spec written by Tare; inputs perturbed (pert-edge exposure)
+spec: specs/advs-ablfl-edge-amb.md
+ambiguous: true
+ambiguity_note: 'It is not stated whether baseline is chosen for each time point (position) separately
+  or once per parameter, or whether a measurement on the first dose day counts as before the first dose.
+  Escalation question: Is baseline chosen separately for each time point of a parameter, and does a measurement
+  on the first dose day count?'
+round: u1
+split: unseen
+readings:
+- id: pooled-timepoints
+  description: One baseline per subject and parameter across all time points (ATPT ignored).
+- id: strict-before
+  description: A measurement on the first dose day is not before the first dose (ADT < TRTSDT).
+- id: pooled-strict-before
+  description: One baseline per subject and parameter across all time points, and a measurement on the
+    first dose day does not count.

@@ -1,0 +1,44 @@
+id: adlb-pchg-std
+benchmark_version: '0.1'
+round: p1b
+dataset: ADLB
+target_vars:
+- PCHG
+keys:
+- USUBJID
+- LBSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: lb_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adlb
+  columns:
+  - USUBJID
+  - LBSEQ
+  - PARAMCD
+  - AVISITN
+  - AVAL
+  - BASE
+rows:
+  DTYPE: null
+spec: specs/adlb-pchg-std.md
+output_contract:
+  columns:
+    USUBJID: string
+    LBSEQ: number
+    PCHG: number
+  allowed_values: {}
+  nullable:
+  - PCHG
+difficulty: medium
+error_categories_expected:
+- baseline-selection
+- missing-value
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADLB template; spec written by Tare

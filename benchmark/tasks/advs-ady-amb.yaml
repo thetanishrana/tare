@@ -1,0 +1,60 @@
+id: advs-ady-amb
+benchmark_version: '0.1'
+dataset: ADVS
+target_vars:
+- ADY
+keys:
+- USUBJID
+- VSSEQ
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: advs_upstream
+  source: oracle
+  oracle_id: std
+  dataset: advs
+  columns:
+  - USUBJID
+  - VSSEQ
+  - PARAMCD
+  - ADT
+  - TRTSDT
+rows:
+  DTYPE: null
+  PARAMCD:
+  - SYSBP
+  - DIABP
+  - PULSE
+  - TEMP
+  - WEIGHT
+  - HEIGHT
+output_contract:
+  columns:
+    USUBJID: string
+    VSSEQ: number
+    ADY: number
+  allowed_values: {}
+  nullable:
+  - ADY
+difficulty: medium
+error_categories_expected:
+- study-day
+- off-by-one
+- spec-misread
+provenance: admiral 1.5.0 ADVS template; spec written by Tare
+spec: specs/advs-ady-amb.md
+ambiguous: true
+ambiguity_note: 'It is not stated how days are counted around the first dose date: whether the first dose
+  day is day 0 or day 1, and whether the day before it is day -1 or day 0. Escalation question: Is the
+  first dose day day 1 or day 0, and is there a day 0?'
+round: u1
+split: unseen
+readings:
+- id: day-zero
+  description: 'The first dose day is day 0: ADY is the plain difference ADT minus TRTSDT in days, before
+    and after.'
+- id: one-based-everywhere
+  description: One is added to the difference for every record, so the first dose day is day 1 and the
+    day before it is day 0.

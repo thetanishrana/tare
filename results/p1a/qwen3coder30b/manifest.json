@@ -1,0 +1,33 @@
+{
+  "git_commit": "26f498a2194360a9bf57029bc8223f8ec9c746ac+dirty",
+  "benchmark_version": "0.1.0",
+  "task_files_sha256": "59a15c8ac74dd70621161db96ecd5ff41cabc79e69fa33aab4322e99f90e956f/1592bd38263a79651c37c6367174df09058791fb22a6a22622933136777bb138",
+  "prompt_version": "k2-v2",
+  "model": {
+    "provider": "ollama",
+    "model": "qwen3-coder:30b",
+    "details": {
+      "parent_model": "",
+      "format": "gguf",
+      "family": "qwen3moe",
+      "families": [
+        "qwen3moe"
+      ],
+      "parameter_size": "30.5B",
+      "quantization_level": "Q4_K_M"
+    },
+    "digest": "06c1097efce0431c2045fe7b2e5108366e43bee1b4603a7aded8f21689e90bca"
+  },
+  "python": "3.12.6",
+  "python_packages": {
+    "pandas": "3.0.6",
+    "pyarrow": "26.0.0",
+    "numpy": "2.5.4",
+    "openai": "3.29.0",
+    "anthropic": "1.13.0",
+    "pyyaml": "6.0.3",
+    "pydantic": "2.14.1"
+  },
+  "sandbox_image": "tare-sandbox:dev",
+  "started": "2026-10-27T15:40:20.960221+00:00"
+}

@@ -1,0 +1,18 @@
+# E9 screening (programmers only, no reviewer): claude-sonnet-5-5 as a single programmer, prompt k2-v4 (required ASSUMPTIONS list, optional ESCALATE reply), 1 sample, on the 6 ambiguous u1 tasks.
+# Purpose: drop tasks a programmer asks about on its own (they cannot test the reviewer). Not reused as a confirmatory sample. Paid; estimated under $0.15 for both models.
+name: u1_screen_sonnet
+provider: anthropic
+model: claude-sonnet-5-5
+prompt_version: k2-v4
+language: python
+max_tokens: 16000
+samples: 1
+max_repairs: 2
+timeout: 120
+tasks:
+- advs-ontrtfl-amb
+- advs-anl01fl-amb
+- adsl-trtedt-edge-amb
+- adlb-r2base-amb
+- advs-avisit-amb
+- advs-ady-amb

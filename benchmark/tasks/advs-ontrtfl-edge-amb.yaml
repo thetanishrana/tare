@@ -1,0 +1,72 @@
+id: advs-ontrtfl-edge-amb
+benchmark_version: '0.1'
+dataset: ADVS
+target_vars:
+- ONTRTFL
+keys:
+- USUBJID
+- VSSEQ
+therapeutic_area: core
+variant: std
+perturbation: edge-exposure
+oracle_id: pert-edge-advs
+inputs:
+- name: advs_upstream
+  source: oracle
+  oracle_id: pert-edge-advs
+  dataset: advs
+  columns:
+  - USUBJID
+  - VSSEQ
+  - PARAMCD
+  - AVISIT
+  - ADT
+  - TRTSDT
+  - TRTEDT
+rows:
+  DTYPE: null
+  PARAMCD:
+  - SYSBP
+  - DIABP
+  - PULSE
+  - TEMP
+  - WEIGHT
+  - HEIGHT
+output_contract:
+  columns:
+    USUBJID: string
+    VSSEQ: number
+    ONTRTFL: string
+  allowed_values:
+    ONTRTFL:
+    - Y
+  nullable:
+  - ONTRTFL
+difficulty: medium
+error_categories_expected:
+- on-treatment-window
+- boundary-day
+- spec-misread
+provenance: admiral 1.5.0 ADVS template; spec written by Tare; inputs perturbed (pert-edge exposure)
+spec: specs/advs-ontrtfl-edge-amb.md
+ambiguous: true
+ambiguity_note: 'It is not stated whether a measurement on the first dose day counts (in particular the
+  baseline visit, which is taken before the first dose), whether the last dose day counts, or whether
+  time after the last dose is on treatment. Escalation question: Do measurements on the first dose day,
+  on the last dose day, or after the last dose count as on treatment, and is the baseline visit taken
+  on the first dose day excluded? It is also not stated what a missing last dose date means.'
+round: u1
+split: unseen
+readings:
+- id: baseline-day-counts
+  description: A measurement on the first dose day is on treatment, including the baseline visit (ADT
+    on or after TRTSDT, nothing else excluded).
+- id: last-day-excluded
+  description: The last dose day is not on treatment (ADT before TRTEDT); the baseline visit on the first
+    dose day is not on treatment.
+- id: end-plus-30
+  description: Measurements up to 30 days after the last dose date are on treatment; the baseline visit
+    on the first dose day is not.
+- id: missing-end-excluded
+  description: A subject with no last dose date has no on-treatment measurements (the end of treatment
+    is unknown).

@@ -1,0 +1,42 @@
+id: adsl-trtdurd-amb
+benchmark_version: '0.1'
+round: k2b
+dataset: ADSL
+target_vars:
+- TRTDURD
+keys:
+- USUBJID
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: adsl_upstream
+  source: oracle
+  oracle_id: std
+  dataset: adsl
+  columns:
+  - USUBJID
+  - TRTSDT
+  - TRTEDT
+spec: specs/adsl-trtdurd-amb.md
+output_contract:
+  columns:
+    USUBJID: string
+    TRTDURD: number
+  allowed_values: {}
+  nullable:
+  - TRTDURD
+difficulty: easy
+error_categories_expected:
+- window-boundary
+- spec-misread
+ambiguous: true
+ambiguity_note: 'Inclusive or elapsed counting is not stated. Escalation question: Should the duration
+  count both the first and the last day, so that a subject treated for one day has a duration of 1 (inclusive),
+  or is it the elapsed number of days between the dates?'
+split: dev
+provenance: admiral 1.5.0 ADSL template; spec written by Tare
+readings:
+- id: elapsed
+  description: Duration is the elapsed days TRTEDT - TRTSDT (no +1).

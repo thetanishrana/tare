@@ -1,0 +1,15 @@
+# Perturbed AE dates (pert-aedates): explicit astdt, adurn and aoccifl tasks and the ambiguous astdt twin; prompt k2-v2, 3 samples. Paid; estimated about $0.2 for both models.
+name: p1f_haiku55
+provider: anthropic
+model: claude-haiku-5-5
+prompt_version: k2-v2
+language: python
+samples: 3
+max_repairs: 2
+timeout: 120
+max_tokens: 16000
+tasks:
+- adae-astdt-pdates
+- adae-astdt-pdates-amb
+- adae-adurn-pdates
+- adae-aoccifl-pdates

@@ -1,0 +1,49 @@
+id: adae-lastdose-edge-std
+benchmark_version: '0.1'
+dataset: ADAE
+target_vars:
+- LDOSEDTM
+- DOSEON
+keys:
+- USUBJID
+- AESEQ
+therapeutic_area: core
+variant: std
+perturbation: edge-exposure
+oracle_id: pert-edge-adae
+inputs:
+- name: ae_upstream
+  source: oracle
+  oracle_id: pert-edge-adae
+  dataset: adae
+  columns:
+  - USUBJID
+  - AESEQ
+  - ASTDT
+- name: ex
+  source: sdtm
+  columns: all
+  oracle_id: pert-edge
+output_contract:
+  columns:
+    USUBJID: string
+    AESEQ: number
+    LDOSEDTM: date
+    DOSEON: number
+  allowed_values: {}
+  nullable:
+  - LDOSEDTM
+  - DOSEON
+difficulty: hard
+error_categories_expected:
+- window-boundary
+- join-duplication
+- missing-value
+- date-vs-datetime
+- spec-misread
+provenance: admiral 1.5.0 ADAE template; spec written by Tare; inputs perturbed (pert-edge exposure)
+spec: specs/adae-lastdose-edge-std.md
+ambiguous: false
+ambiguity_note: null
+round: u1
+split: unseen

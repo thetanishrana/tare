@@ -1,0 +1,14 @@
+# Hard explicit sponsor-variant tasks (round p1e): LSTALVDT complete dates, ONTRTFL +7 days, AOCCIFL by body system; prompt k2-v2, 3 samples. Paid; estimated about $0.15 for both models.
+name: p1e_sonnet55
+provider: anthropic
+model: claude-sonnet-5-5
+prompt_version: k2-v2
+language: python
+samples: 3
+max_repairs: 2
+timeout: 120
+max_tokens: 16000
+tasks:
+- adsl-lstalvdt-complete
+- adlb-ontrtfl-w7
+- adae-aoccifl-bysoc

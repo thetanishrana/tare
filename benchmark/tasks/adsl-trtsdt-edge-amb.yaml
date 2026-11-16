@@ -1,0 +1,48 @@
+id: adsl-trtsdt-edge-amb
+benchmark_version: '0.1'
+dataset: ADSL
+target_vars:
+- TRTSDT
+keys:
+- USUBJID
+therapeutic_area: core
+variant: std
+perturbation: edge-exposure
+oracle_id: pert-edge
+inputs:
+- name: dm
+  source: sdtm
+  columns: all
+- name: ex
+  source: sdtm
+  columns: all
+  oracle_id: pert-edge
+spec: specs/adsl-trtsdt-edge-amb.md
+output_contract:
+  columns:
+    USUBJID: string
+    TRTSDT: date
+  allowed_values: {}
+  nullable:
+  - TRTSDT
+difficulty: medium
+error_categories_expected:
+- population-flag
+- placebo-zero-dose
+- missing-value
+- spec-misread
+ambiguous: true
+ambiguity_note: '''First exposure record'' does not say whether placebo rows (dose 0) or rows with a missing
+  dose count, nor what to do with partial or missing start dates. Escalation question: Which exposure
+  records count as starting treatment (placebo at dose 0? missing dose?), and are records with a partial
+  start date used or skipped?'
+split: dev
+provenance: admiral 1.5.0 ADSL template; spec written by Tare; inputs perturbed (pert-edge)
+round: p1c
+readings:
+- id: active-only
+  description: Placebo rows (dose 0) do not start treatment; only dose above 0 counts.
+- id: any-record
+  description: Any exposure record with a complete start date counts, whatever the dose.
+- id: partial-imputed
+  description: Partial start dates are used, with a missing month or day set to 1.

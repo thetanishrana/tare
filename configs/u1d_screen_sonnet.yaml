@@ -1,0 +1,13 @@
+# E9 screening, fourth set (programmers only, no reviewer): claude-sonnet-5-5 as a single programmer, prompt k2-v4, 1 sample, on adae-aoccifl-aedates-amb (the task added to reach the 8 the design requires).
+# Same rule as u1_screen_*. Paid; estimated about $0.02 for both models.
+name: u1d_screen_sonnet
+provider: anthropic
+model: claude-sonnet-5-5
+prompt_version: k2-v4
+language: python
+max_tokens: 16000
+samples: 1
+max_repairs: 2
+timeout: 120
+tasks:
+- adae-aoccifl-aedates-amb

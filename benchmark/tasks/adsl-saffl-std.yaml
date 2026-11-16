@@ -1,0 +1,36 @@
+id: adsl-saffl-std
+benchmark_version: '0.1'
+dataset: ADSL
+target_vars:
+- SAFFL
+keys:
+- USUBJID
+therapeutic_area: core
+variant: std
+perturbation: none
+oracle_id: std
+inputs:
+- name: dm
+  source: sdtm
+  columns: all
+- name: ex
+  source: sdtm
+  columns: all
+spec: specs/adsl-saffl-std.md
+output_contract:
+  columns:
+    USUBJID: string
+    SAFFL: string
+  allowed_values:
+    SAFFL:
+    - Y
+    - N
+  nullable: []
+difficulty: easy
+error_categories_expected:
+- population-flag
+- placebo-zero-dose
+ambiguous: false
+ambiguity_note: null
+split: dev
+provenance: admiral 1.5.0 ADSL template; spec written by Tare
